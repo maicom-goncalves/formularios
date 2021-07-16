@@ -51,13 +51,14 @@ form {
       background: #f9f9f9;
       border: 1px solid black;
       font-family:  Arial;
-      //text-align: left;
+      /*text-align: left;*/
     }
 
     form label {
-      padding: 0.5em;
-      text-align: right;
+      /*padding: 0.5em;
+      text-align: right;*/
       grid-column: 1 / 2;
+      text-align: left;
     }
    
     form input {
