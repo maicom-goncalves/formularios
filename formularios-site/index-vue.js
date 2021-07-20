@@ -1,4 +1,3 @@
-// Setup Firebase
 var config = {
   apiKey: "AIzaSyCLVtq2sOSkZNNrXGzluMkCDJCUvpJS2b8",
    authDomain: "delivery-muito.firebaseapp.com",
@@ -14,30 +13,32 @@ var firestore = firebase.firestore();
 var usersRef = firestore.doc("formularios/pacientes");
 
 console.log(usersRef);
-// create Vue app
+
+
 var app = new Vue({
   // element to mount to
   el: "#app",
   // initial data
   data: {
     newUser: {
-      name: "",
-      lastname: ""
-      //console.log(name,lastname);
+      nameId: "",
+      lastnameId: ""
+      
     }
   },
   // firebase binding
   // https://github.com/vuejs/vuefire
   firebase: {
     users: usersRef,
-
+    
   },
   // computed property for form validation state
   computed: {
+    
     validation: function() {
       return {
-        name: !!this.newUser.name.trim(),
-        lastname: !!this.newUser.lastname.trim()
+        nameId: !!this.newUser.nameId.trim(),
+        lastnameId: !!this.newUser.lastnameId.trim()
       };
     },
     isValid: function() {
@@ -50,20 +51,20 @@ var app = new Vue({
   // methods
   methods: {
     addUser: function() {
-    
+      console.log(nameId,lastnameId);
       if (this.isValid) {
-        docRef.set({
-            nome:name,
-            sobrenome:lastname
+        /*usersRef.set({
+            nome:nameId,
+            sobrenome:lastnameId
         }).then(function(){
             console.log("Status saved");
             console.log(users);
         }).catch(function(error){
             console.log("Got an error:",error);
-        });
-        /*usersRef.push(this.newUser);
-        this.newUser.name = "";
-        this.newUser.lastname = "";*/
+        });*/
+        usersRef.set(this.newUser);
+          this.newUser.nameId = "";
+          this.newUser.lastnameId = "";
       }
     },
     removeUser: function(user) {

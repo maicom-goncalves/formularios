@@ -23,13 +23,13 @@
 		<form id="form" v-on:submit.prevent="addUser">
 		  <div> <label for="nome">Nome</label>
 
-		    <input id="nome" type="text" v-model="newUser.name" required></div>
+		    <input id="nameId" type="text" v-model="newUser.nameId" required></div>
 
 		   <div><label for="nascimento">Nascimento</label>
 		    <input id="nascimento" type="date"></div>
 
             <div><label for="sobrenome">Sobrenome</label>
-		    <input id="sobrenome" type="text" v-model="newUser.lastname" required></div>
+		    <input id="lastnameId" type="text" v-model="newUser.lastnameId" required></div>
 
 		    <div><label for="house">Casa</label>
 		    <input id="casa" type="text" required></div>
