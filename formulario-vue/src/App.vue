@@ -8,74 +8,116 @@
       <h4>POSTO DE SAÚDE INDÍGENA</h4>
     </header>
     <article>
-        <form id="form" v-on:submit.prevent="addUser">
-          <div> <label for="nome">Nome</label>
+      <form id="form" v-on:submit="addUser">
+        <div>
+          <label for="nome">Nome</label>
+          <input id="nameId" type="text" v-model="newUsers.nameId" required />
+          <label for="sobrenome">Sobrenome</label>
+          <input id="lastnameId" type="text" v-model="newUsers.lastnameId" required />
+        </div>
 
-            <input id="nameId" type="text" v-model="newUser.nameId" required></div>
-
-          <div><label for="sobrenome">Sobrenome</label>
-            <input id="lastnameId" type="text" v-model="newUser.lastnameId" required></div>
-
-          <button type="reset" id="loadButton">Carregar</button>
-          <button type="submit" value="AddUser">Enviar</button>
-        </form>
-        <li v-for="user in users" class="user" :key="user['.key']">
-          <span>{{user.name}} - {{user.lastname}}</span>
-          <button v-on:click="removeUser(user)"><b>REMOVE</b></button>
-        </li>
+        <button type="reset" id="loadButton">Carregar</button>
+        <button type="submit" value="AddUser">Enviar</button>
+      </form>
+      <li v-for="user in users" class="user" :key="user['.key']">
+        <span>{{ user.nome }} - {{ user.sobrenome }}</span>
+        <button v-on:click="removeUser(user)"><b>REMOVE</b></button>
+      </li>
     </article>
   </div>
 </template>
 
 <script>
-  import { db } from './firebase';
-  //import HelloWorld from './components/HelloWorld.vue'
+import { db } from "./firebase";
 
-  export default {
-    name: 'App',
-    data() {
-      return {
-        pacientes: [],
-        newUser: {
+export default {
+  name: "App",
+  
+  data() {
+    return {
+      users: [],
+      newUsers: {
           nameId: "",
           lastnameId: ""}
-  }},
-    firestore(){
-      return {
-        pacientes: db.collection('pacientes'),
+    };
+  },
+  props: {
+    newUser: {
+      required: false,
+      default: () => {
+        return {
+          nameId:'',
+          lastnameId:''
+        }
+      }
+    },
+  },
+  firestore(){
+   return {
+        users: db.collection('users'),
       }
   },
-  methods: {
-      addUsers: function() {
-        this.$firestore.pacientes.add(
-          {
-          name: this.newUser.nameId,
-          lastname: this.newUser.lastnameId
-          /*this.newUser.nameId = "";
-          this.newUser.lastnameId = "";*/
+   /*firestore(nameId,lastnameId) {
+     console.log(nameId+'')
+    return {
+      users: db.collection("users").add({ nome:nameId+':id', sobrenome:lastnameId+':id'})
+          .then(() => {
+            console.log("Document successfully written!");
+          })
+          .catch((error) => {
+            console.error("Error writing document: ", error);
+          })
+    };
+  },*/
 
-          }
-        );
-        this.newUsers = '';
-      },
-      deleteUser: function(paciente) {
-        this.$firestore.pacientes.doc(paciente['.key']).delete();
-      }
+  methods: { 
+    addUser: function () {
+     console.log(this.newUsers.nameId);
+      //this.$firestore.users.add(this.newUser.nameId,this.newUser.lastnameId)
+      this.$firestore().db.collection("users")
+      .add({ nome:this.newUser.nameId+':idwudund', sobrenome:this.newUser.lastnameId+':iddwdwd'})
+      .then(() => {
+            console.log("Document successfully written!");
+          })
+          .catch((error) => {
+            console.error("Error writing document: ", error);
+          });
+      this.newUsers = '';
+    },
+    
+    deleteUser: function (user) {
+      this.$firestore.users.doc(user[".key"]).delete();
     }
-  }
-
+    },
+   
+  
+  /*methods: {
+    this.newUser.nameId = "";
+     this.newUser.lastnameId = "";
+     
+    addUsers: function () {
+      this.$firestore.users.add({
+        name: this.newUser.nameId,
+        lastname: this.newUser.lastnameId,
+        this.newUser.nameId = "";
+          this.newUser.lastnameId = "";
+      });
+      this.newUsers = "";
+    },
+    deleteUser: function (paciente) {
+      this.$firestore.users.doc(paciente[".key"]).delete();
+    },
+  },*/
+};
 </script>
 
 <style>
-
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
-
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #05074b;
+  margin-top: 60px;
+}
 </style>
-

@@ -11,4 +11,6 @@ const firebaseApp = firebase.initializeApp({
    measurementId: "G-TKR1RPT8Q7"
 });
 
+//db.settings({ timestampsInSnapshots:true })
 export const db = firebaseApp.firestore();
+
