@@ -39,7 +39,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add "scoped" escopo css valido somente neste componente e filhos do componente -->
 <style scoped>
 h3 {
   margin: 40px 0 0;

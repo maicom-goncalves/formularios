@@ -8,68 +8,23 @@
       <h4>POSTO DE SAÚDE INDÍGENA</h4>
     </header>
     <article>
-      <form id="form" v-on:submit.prevent="addUser">
-        <div>
-          <label for="nome">Nome</label>
-          <input id="nameId" type="text" v-model="newUsers.nameId" required />
-          <label for="sobrenome">Sobrenome</label>
-          <input id="lastnameId" type="text" v-model="newUsers.lastnameId" required />
-        </div>
-        <button type="submit" value="AddUser">Enviar</button>
-      </form>
-      <li v-for="user in users" class="user" :key="user['.key']">
-        <span>{{ user.nome }} - {{ user.sobrenome }}</span>
-        <button v-on:click="removeUser(user)"><b>REMOVE</b></button>
-      </li>
+      <app-formularioid />
     </article>
+    <footer>
+      <app-busca />
+      <br />
+    </footer>
   </div>
 </template>
 
 <script>
-import { db } from "./firebase";
+import FormularioId from './components/FormularioId.vue'
+import Busca from './components/Busca.vue'
 
 export default {
-  name: "App",
-  
-  data() {
-    return {
-      users: [],
-      newUsers: {
-          nameId: "",
-          lastnameId: ""}
-    };
-  },
- props: {
-    newUser: {
-      required: false,
-      default: () => {
-        return {
-          nameId:'',
-          lastnameId:''
-        }
-      }
-    },
-  },
-  firestore(){
-   return {
-        users: db.collection('users'),
-      }
-  },
-  
-  methods: { 
-    
-     addUser: function () {
-     console.log('testatando teste');
-      db.collection('users').add({ nome:`${this.newUsers.nameId}`
-      , sobrenome:`${this.newUsers.lastnameId}` });
-              
-    },
-    
-    deleteUser: function (user) {
-      this.$firestore.users.doc(user[".key"]).delete();
-    }
-    },
-};
+  components:{'app-formularioid':FormularioId,'app-busca':Busca }
+
+}
 </script>
 
 <style>
@@ -79,6 +34,31 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #05074b;
-  margin-top: 60px;
+  margin-top: 40px;
+  display: grid;
+  grid-template-areas: "header header" "article article" "footer footer";
+  grid-template-columns: 750px auto;
+}
+header {
+  grid-area: header;
+  border-bottom: 1px solid #c9d7f1;
+  text-align: center;
+}
+
+header h1 {
+  margin-left: 20px;
+}
+
+article {
+  grid-area: article;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+footer {
+  text-align: justify;
+  border-top: 1px solid #c9d7f1;
+  grid-area: footer;
+  font-size: 20pt;
 }
 </style>
