@@ -75,7 +75,13 @@
         </div>
         <div>
           <label for="cpf">CPF</label>
-          <input id="id-cpf" type="number" value="0" />
+          <input
+            id="id-cpf"
+            type="number"
+            value="0"
+            required
+            v-model="newUsers.cpfId"
+          />
         </div>
       </div>
       <div class="parte-tres">
@@ -136,22 +142,67 @@ export default {
   },
 
   methods: {
-    
     addUser: function () {
-      console.log("testatando teste");
-      db.collection("users").add({
-        nome: `${this.newUsers.nameId}`,
-        sobrenome: `${this.newUsers.lastnameId}`,
-        casa: `${this.newUsers.houseId}`,
-        Etnia: `${this.newUsers.etnosId}`,
-        Mae: `${this.newUsers.motherId}`,
-        aldeia: `${this.newUsers.residenceId}`,
-        cidade: `${this.newUsers.cityId}`,
-        cartaosus: `${this.newUsers.cardsusId}`,
-        data: `${this.newUsers.dateId}`,
-        pai: `${this.newUsers.fatherId}`,
-        polobase: `${this.newUsers.poleId}`,
-      });
+      function TestaCPF(cpf) {
+        if (typeof cpf !== "string") return false;
+
+        // Tirar formatação
+        cpf = cpf.replace(/[^\d]+/g, "");
+
+        // Validar se tem tamanho 11 ou se é uma sequência de digitos repetidos
+        if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false;
+
+        // String para Array
+        cpf = cpf.split("");
+
+        const validator = cpf
+          // Pegar os últimos 2 digitos de validação
+          .filter((digit, index, array) => index >= array.length - 2 && digit)
+          // Transformar digitos em números
+          .map((el) => +el);
+
+        const toValidate = (pop) =>
+          cpf
+            // Pegar Array de items para validar
+            .filter(
+              (digit, index, array) => index < array.length - pop && digit
+            )
+            // Transformar digitos em números
+            .map((el) => +el);
+
+        const rest = (count, pop) =>
+          ((toValidate(pop)
+            // Calcular Soma dos digitos e multiplicar por 10
+            .reduce((soma, el, i) => soma + el * (count - i), 0) *
+            10) %
+            // Pegar o resto por 11
+            11) %
+          // transformar de 10 para 0
+          10;
+
+        return !(rest(10, 2) !== validator[0] || rest(11, 1) !== validator[1]);
+      }
+      var strCPF = TestaCPF(`${this.newUsers.cpfId}`);
+
+      if (strCPF == true) {
+        console.log("testatando teste");
+        db.collection("users").add({
+          nome: `${this.newUsers.nameId}`,
+          sobrenome: `${this.newUsers.lastnameId}`,
+          cpf: `${this.newUsers.cpfId}`,
+          casa: `${this.newUsers.houseId}`,
+          Etnia: `${this.newUsers.etnosId}`,
+          Mae: `${this.newUsers.motherId}`,
+          aldeia: `${this.newUsers.residenceId}`,
+          cidade: `${this.newUsers.cityId}`,
+          cartaosus: `${this.newUsers.cardsusId}`,
+          data: `${this.newUsers.dateId}`,
+          pai: `${this.newUsers.fatherId}`,
+          polobase: `${this.newUsers.poleId}`,
+        });
+      } else {
+        return console.log(strCPF + "**não deu certo");
+      }
     },
   },
 };
@@ -179,7 +230,7 @@ form {
   display: grid;
   /*grid-template-columns: 700px 700px;*/
   grid-template-columns: 1fr 1fr;
-	grid-auto-columns: 800px;
+  grid-auto-columns: 800px;
   /*grid-template-areas: " parte-um parte-dois" "parte-tres parte-tres";*/
 }
 .parte-um {
@@ -188,12 +239,12 @@ form {
   padding: 20px;
 }
 .parte-dois {
- /* grid-area: parte-dois;*/
+  /* grid-area: parte-dois;*/
   text-align: justify;
   padding: 20px;
 }
 .parte-tres {
- /* grid-area: parte-tres;*/
+  /* grid-area: parte-tres;*/
   text-align: center;
 }
 </style>

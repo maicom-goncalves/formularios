@@ -57,7 +57,7 @@ article {
 }
 footer {
   text-align: justify;
-  border-top: 1px solid #c9d7f1;
+  border-top: 1px solid #7bd6e2;
   grid-area: footer;
   font-size: 20pt;
 }
