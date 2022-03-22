@@ -6,13 +6,22 @@
       <h2>SECRETARIA ESPECIAL INDÍGENA</h2>
       <h3>DISTRITO SANITÁRIO ESPECIAL DE INDÍGENA MATO GROSSO DO SUL</h3>
       <h4>POSTO DE SAÚDE INDÍGENA</h4>
+      <span>
+        <button class="vermelho" @click="componente ='FormularioId'">
+          Formulario
+        </button>
+        <button class="verde" @click="componente ='Busca'">
+          Pacientes
+        </button>
+    </span>
     </header>
     <article>
-      <app-formularioid />
+      <component :is="componente"/>
+      
     </article>
     <footer>
-      <app-busca />
       <br />
+      
     </footer>
   </div>
 </template>
@@ -22,8 +31,13 @@ import FormularioId from './components/FormularioId.vue'
 import Busca from './components/Busca.vue'
 
 export default {
-  components:{'app-formularioid':FormularioId,'app-busca':Busca }
-
+  components:{FormularioId,Busca },
+  data(){
+		return{
+			componente:'FormularioId',
+      
+		}
+	}
 }
 </script>
 
@@ -61,4 +75,26 @@ footer {
   grid-area: footer;
   font-size: 20pt;
 }
+
+.vermelho {
+  font-size: 45px;
+  background-color: #bf0603;
+  color: #ecebe3;
+  border-radius: 20px;
+  margin:5px;
+  cursor:pointer;
+  margin:8px;
+}
+.verde {
+  font-size: 45px;
+  background-color: #3bb273;
+  color: #ecebe3;
+  border-radius: 20px;
+  margin:6px;
+  cursor:pointer;
+  margin:8px;
+}
+
+
+
 </style>

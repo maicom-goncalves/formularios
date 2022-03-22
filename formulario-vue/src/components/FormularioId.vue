@@ -76,7 +76,7 @@
         <div>
           <label for="cpf">CPF</label>
           <input
-            id="id-cpf"
+            id="cpfId"
             type="number"
             value="0"
             required
@@ -88,19 +88,41 @@
         <button type="submit" value="AddUser">Enviar</button>
       </div>
     </form>
+    <button class="vermelhopastel" @click="componente2 = 'FormularioId2'">
+      Vacinas
+    </button>
+    <button class="verdeagua" @click="componente2 = 'FormularioId3'">
+      Doenças
+    </button>
+    <button class="azulclaro" @click="componente2 = 'FormularioId4'">
+      Medicamentos
+    </button>
+    <button class="verdeagua" @click="componente2 = 'FormularioId5'">
+      Óbito
+    </button>
+    <div>
+      <component :is="componente2" />
+    </div>
   </div>
 </template>
 
 <script>
 import { db } from "../firebase";
+import FormularioId2 from "./FormularioId2.vue";
+import FormularioId3 from "./FormularioId3.vue";
+import FormularioId4 from "./FormularioId4.vue";
+import FormularioId5 from "./FormularioId5.vue";
 export default {
+  components: { FormularioId2,FormularioId3,FormularioId4 ,FormularioId5},
   name: "formularioId",
   data() {
     return {
+      componente2: "FormularioId2",
       users: [],
       newUsers: {
         nameId: "",
         lastnameId: "",
+        cpfId: "",
         houseId: "",
         etnosId: "",
         motherId: "",
@@ -121,6 +143,7 @@ export default {
         return {
           nameId: "",
           lastnameId: "",
+          cpfId: "",
           houseId: "",
           etnosId: "",
           motherId: "",
@@ -145,16 +168,12 @@ export default {
     addUser: function () {
       function TestaCPF(cpf) {
         if (typeof cpf !== "string") return false;
-
         // Tirar formatação
         cpf = cpf.replace(/[^\d]+/g, "");
-
         // Validar se tem tamanho 11 ou se é uma sequência de digitos repetidos
         if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false;
-
         // String para Array
         cpf = cpf.split("");
-
         const validator = cpf
           // Pegar os últimos 2 digitos de validação
           .filter((digit, index, array) => index >= array.length - 2 && digit)
@@ -163,7 +182,7 @@ export default {
 
         const toValidate = (pop) =>
           cpf
-            // Pegar Array de items para validar
+
             .filter(
               (digit, index, array) => index < array.length - pop && digit
             )
@@ -185,7 +204,7 @@ export default {
       var strCPF = TestaCPF(`${this.newUsers.cpfId}`);
 
       if (strCPF == true) {
-        console.log("testatando teste");
+        console.log("escrito no Firestore");
         db.collection("users").add({
           nome: `${this.newUsers.nameId}`,
           sobrenome: `${this.newUsers.lastnameId}`,
@@ -201,50 +220,81 @@ export default {
           polobase: `${this.newUsers.poleId}`,
         });
       } else {
-        return console.log(strCPF + "**não deu certo");
+        return alert("CPF inserido é invalido");
       }
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
 input {
   font-size: 18pt;
   margin-bottom: 10px;
   margin-left: 5px;
+  width: 98%;
 }
 button {
   font-size: 40px;
-  background-color: #092b69;
+  background-color: #cf3c31;
   color: #ecebe3;
   border-radius: 20px;
 }
 
 form {
   /*max-width: 1200px;*/
-  background: #f9f9f9;
-  border: 1px solid black;
+  background: #9ce0e9;
+  border: 1px solid rgb(255, 238, 238);
   font-family: Arial;
-  font-size: 17px;
+  font-size: 27px;
   display: grid;
   /*grid-template-columns: 700px 700px;*/
   grid-template-columns: 1fr 1fr;
   grid-auto-columns: 800px;
+  border-radius: 18px;
+  color: black;
   /*grid-template-areas: " parte-um parte-dois" "parte-tres parte-tres";*/
 }
 .parte-um {
   /*grid-area: parte-um;*/
-  text-align: justify;
+  text-align: left;
   padding: 20px;
 }
 .parte-dois {
   /* grid-area: parte-dois;*/
-  text-align: justify;
+  text-align: left;
   padding: 20px;
 }
 .parte-tres {
   /* grid-area: parte-tres;*/
   text-align: center;
 }
+.verdeagua {
+  font-size: 45px;
+  background-color: #41eb90;
+  color: #ecebe3;
+  border-radius: 20px;
+  margin:6px;
+  cursor:pointer;
+  margin:8px;
+}
+.azulclaro {
+  font-size: 45px;
+  background-color: #56d3e4;
+  color: #ffffff;
+  border-radius: 20px;
+  margin:5px;
+  cursor:pointer;
+  margin:8px;
+}
+.vermelhopastel {
+  font-size: 45px;
+  background-color: #ec6543;
+  color: #ffffff;
+  border-radius: 20px;
+  margin:6px;
+  cursor:pointer;
+  margin:8px;
+}
+
 </style>
