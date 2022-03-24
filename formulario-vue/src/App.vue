@@ -8,30 +8,29 @@
       <h4>POSTO DE SAÚDE INDÍGENA</h4>
       <span>
         <button class="vermelho" @click="componente ='FormularioId'">
-          Formulario
+          Formulario de Cadastro
         </button>
-        <button class="verde" @click="componente ='Busca'">
-          Pacientes
+        <button class="verde" @click="componente ='ListaMoradores'">
+          Lista de Moradores
         </button>
     </span>
     </header>
     <article>
       <component :is="componente"/>
-      
     </article>
     <footer>
       <br />
-      
     </footer>
   </div>
 </template>
 
 <script>
 import FormularioId from './components/FormularioId.vue'
-import Busca from './components/Busca.vue'
+//import Busca from './components/Busca.vue'
+import ListaMoradores from './components/ListaMoradores.vue'
 
 export default {
-  components:{FormularioId,Busca },
+  components:{FormularioId,ListaMoradores },
   data(){
 		return{
 			componente:'FormularioId',
@@ -71,28 +70,30 @@ article {
 }
 footer {
   text-align: justify;
-  border-top: 1px solid #7bd6e2;
+  border-top: 1px solid #80dde9;
   grid-area: footer;
   font-size: 20pt;
 }
 
 .vermelho {
   font-size: 45px;
-  background-color: #bf0603;
+  background-color: #d62d2a;
   color: #ecebe3;
   border-radius: 20px;
   margin:5px;
   cursor:pointer;
   margin:8px;
+  padding: 5px;
 }
 .verde {
   font-size: 45px;
-  background-color: #3bb273;
+  background-color: #37b170;
   color: #ecebe3;
   border-radius: 20px;
   margin:6px;
   cursor:pointer;
   margin:8px;
+  padding: 5px;
 }
 
 

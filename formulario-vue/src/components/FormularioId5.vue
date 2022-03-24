@@ -6,12 +6,15 @@
     <form id="form1" v-on:submit.prevent="addobito">
     <div class="item">
        <h3>Data do Óbito</h3>
+       <input id="data" type="date" v-model="newUsers.obitoId" />
      </div>
      <div class="item">
        <h3>Atestado de Óbito</h3>
+       <input  type="text" v-model="newUsers.atestadoId" />
      </div>   
      <div class="item">
        <h3>Causas do Óbito</h3>
+       <input type="text" v-model="newUsers.causaObitoId" />
      </div>             
     </form>
   </div>
@@ -23,7 +26,14 @@ import { db } from "../firebase";
 export default {
   name: "formularioId5",
   data() {
-    return {};
+    return {
+       users: [],
+      newUsers: {
+        obitoId: "",
+        atestadoId: "",
+        causaObitoId: "",
+      },
+    };
   },
   props: {
     newUser: {

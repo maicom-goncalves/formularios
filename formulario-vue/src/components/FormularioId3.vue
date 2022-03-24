@@ -6,12 +6,15 @@
     <form id="form1" v-on:submit.prevent="addDoenca">
     <div class="item">
        <h3>Doença</h3>
+       <input id="nameId" type="text" v-model="newUsers.doencaId" required />
      </div>
      <div class="item">
        <h3>Data do Diagnóstico</h3>
+       <input id="data" type="date" v-model="newUsers.dataDiagnosticoId" />
      </div>   
      <div class="item">
        <h3>Situação Atual</h3>
+       <input  type="text" v-model="newUsers.situacaoId" required />
      </div>             
     </form>
   </div>
@@ -23,7 +26,14 @@ import { db } from "../firebase";
 export default {
   name: "formularioId3",
   data() {
-    return {};
+    return {
+       users: [],
+      newUsers: {
+        doencaId: "",
+        dataDiagnosticoId: "",
+        situacaoId: "",
+      },
+    };
   },
   props: {
     newUser: {

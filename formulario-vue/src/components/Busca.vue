@@ -1,6 +1,7 @@
 <template>
 <div id="busca">
     <li v-for="user in users" class="user" :key="user['.key']">
+        <h3 id="morador">{{ user.nome }} {{ user.sobrenome }}</h3>
         <p class="destaque"><b>{{ user.nome }} {{ user.sobrenome }}</b><p/>
         <p>nome:{{ user.nome }} -sobrenome: {{ user.sobrenome }}</p>
         <p>mãe:{{ user.Mae }}</p>
@@ -15,7 +16,9 @@
         <button v-on:click="deleteUser(user)"><b>REMOVE</b></button>
         <hr/>
     </li>
+ <hr/>   
 </div>
+
 
 </template>
 
@@ -39,13 +42,18 @@ export default {
 <style scoped>
     #busca{
         display: grid;
-        background-color: #e0df95;
+        background-color: #c7c68cc4;
         color:black;
         border: 1px solid #ffeeee;
-        margin:10px;
+        margin:43px;
         font-size:24px;
         text-align:justify;
         padding:20px;
+    }
+    #morador{
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 47px;
+      background-color: aqua;
     }
     .destaque{
         font-size:26px;
@@ -56,5 +64,6 @@ export default {
       color: #ecebe3;
       border-radius: 10px;
       margin:5px;
+      padding: 15px;
     }
 </style>

@@ -238,7 +238,8 @@ button {
   font-size: 40px;
   background-color: #cf3c31;
   color: #ecebe3;
-  border-radius: 20px;
+  border-radius: 15px;
+  padding: 12px;
 }
 
 form {
@@ -277,6 +278,7 @@ form {
   margin:6px;
   cursor:pointer;
   margin:8px;
+  padding: 12px;
 }
 .azulclaro {
   font-size: 45px;
@@ -286,15 +288,17 @@ form {
   margin:5px;
   cursor:pointer;
   margin:8px;
+  padding: 12px;
 }
 .vermelhopastel {
   font-size: 45px;
-  background-color: #ec6543;
+  background-color: #e01674;
   color: #ffffff;
   border-radius: 20px;
   margin:6px;
   cursor:pointer;
   margin:8px;
+  padding: 12px;
 }
 
 </style>
