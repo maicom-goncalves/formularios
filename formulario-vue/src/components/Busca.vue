@@ -1,6 +1,6 @@
 <template>
 <div id="busca">
-    <li v-for="user in users" class="user" :key="user['.key']">
+    <ul :key="user['.key']">
         <h3 id="morador">{{ user.nome }} {{ user.sobrenome }}</h3>
         <p class="destaque"><b>{{ user.nome }} {{ user.sobrenome }}</b><p/>
         <p>nome:{{ user.nome }} -sobrenome: {{ user.sobrenome }}</p>
@@ -15,7 +15,7 @@
         <br/>
         <button v-on:click="deleteUser(user)"><b>REMOVE</b></button>
         <hr/>
-    </li>
+    </ul>
  <hr/>   
 </div>
 
@@ -25,6 +25,7 @@
 <script>
 import { db } from "../firebase"
 export default {
+    props:['id'],
     firestore() {
     return {
       users: db.collection("users"),
@@ -45,14 +46,14 @@ export default {
         background-color: #c7c68cc4;
         color:black;
         border: 1px solid #ffeeee;
-        margin:43px;
+        margin:10px;
         font-size:24px;
         text-align:justify;
         padding:20px;
     }
     #morador{
       font-family: 'Times New Roman', Times, serif;
-      font-size: 47px;
+      font-size: 37px;
       background-color: aqua;
     }
     .destaque{

@@ -113,7 +113,7 @@ import FormularioId3 from "./FormularioId3.vue";
 import FormularioId4 from "./FormularioId4.vue";
 import FormularioId5 from "./FormularioId5.vue";
 export default {
-  components: { FormularioId2,FormularioId3,FormularioId4 ,FormularioId5},
+  components: { FormularioId2, FormularioId3, FormularioId4, FormularioId5 },
   name: "formularioId",
   data() {
     return {
@@ -168,35 +168,26 @@ export default {
     addUser: function () {
       function TestaCPF(cpf) {
         if (typeof cpf !== "string") return false;
-        // Tirar formatação
         cpf = cpf.replace(/[^\d]+/g, "");
-        // Validar se tem tamanho 11 ou se é uma sequência de digitos repetidos
         if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false;
-        // String para Array
         cpf = cpf.split("");
         const validator = cpf
-          // Pegar os últimos 2 digitos de validação
           .filter((digit, index, array) => index >= array.length - 2 && digit)
-          // Transformar digitos em números
           .map((el) => +el);
-
         const toValidate = (pop) =>
           cpf
-
             .filter(
               (digit, index, array) => index < array.length - pop && digit
             )
-            // Transformar digitos em números
             .map((el) => +el);
 
         const rest = (count, pop) =>
-          ((toValidate(pop)
-            // Calcular Soma dos digitos e multiplicar por 10
-            .reduce((soma, el, i) => soma + el * (count - i), 0) *
+          ((toValidate(pop).reduce(
+            (soma, el, i) => soma + el * (count - i),
+            0
+          ) *
             10) %
-            // Pegar o resto por 11
             11) %
-          // transformar de 10 para 0
           10;
 
         return !(rest(10, 2) !== validator[0] || rest(11, 1) !== validator[1]);
@@ -204,6 +195,9 @@ export default {
       var strCPF = TestaCPF(`${this.newUsers.cpfId}`);
 
       if (strCPF == true) {
+        /*
+      escrevendo dados dos usuarios no firebase
+      */ 
         console.log("escrito no Firestore");
         db.collection("users").add({
           nome: `${this.newUsers.nameId}`,
@@ -275,9 +269,9 @@ form {
   background-color: #41eb90;
   color: #ecebe3;
   border-radius: 20px;
-  margin:6px;
-  cursor:pointer;
-  margin:8px;
+  margin: 6px;
+  cursor: pointer;
+  margin: 8px;
   padding: 12px;
 }
 .azulclaro {
@@ -285,9 +279,9 @@ form {
   background-color: #56d3e4;
   color: #ffffff;
   border-radius: 20px;
-  margin:5px;
-  cursor:pointer;
-  margin:8px;
+  margin: 5px;
+  cursor: pointer;
+  margin: 8px;
   padding: 12px;
 }
 .vermelhopastel {
@@ -295,10 +289,9 @@ form {
   background-color: #e01674;
   color: #ffffff;
   border-radius: 20px;
-  margin:6px;
-  cursor:pointer;
-  margin:8px;
+  margin: 6px;
+  cursor: pointer;
+  margin: 8px;
   padding: 12px;
 }
-
 </style>

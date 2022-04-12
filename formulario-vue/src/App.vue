@@ -10,6 +10,7 @@
         <button class="vermelho" @click="componente ='FormularioId'">
           Formulario de Cadastro
         </button>
+        <!-- carregar lista de moradores da região -->
         <button class="verde" @click="componente ='ListaMoradores'">
           Lista de Moradores
         </button>
@@ -17,6 +18,7 @@
     </header>
     <article>
       <component :is="componente"/>
+      <router-view ></router-view>
     </article>
     <footer>
       <br />
@@ -30,6 +32,7 @@ import FormularioId from './components/FormularioId.vue'
 import ListaMoradores from './components/ListaMoradores.vue'
 
 export default {
+  props:['key'],
   components:{FormularioId,ListaMoradores },
   data(){
 		return{
