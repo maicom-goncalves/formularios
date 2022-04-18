@@ -85,55 +85,82 @@
         </div>
       </div>
       <div class="parte-um">
+        <h3>VACINA</h3>
         <div>
-          <h3>Vacina</h3>
-          <label for="vacina">Nome</label>
+          <label for="vacina">vacina</label>
           <input id="vacina" type="text" v-model="newUsers.vacinaId" />
         </div>
         <div>
-          <h3>Doze</h3>
-          <label for="doze">Nome</label>
+          <label for="doze">Doze</label>
           <input id="doze" type="text" v-model="newUsers.dozeId" />
         </div>
         <div>
-          <h3>Data</h3>
-          <label for="data">Nome</label>
+          <label for="data">Data</label>
           <input id="data" type="date" v-model="newUsers.dataId" />
         </div>
         <div>
-          <h3>Lote</h3>
           <label for="lote">Lote</label>
           <input id="lote" type="text" v-model="newUsers.loteId" />
         </div>
         <div>
-          <h3>Validade</h3>
-          <label for="validade">Nome</label>
+          <label for="validade">Validade</label>
           <input id="validade" type="date" v-model="newUsers.validadeId" />
         </div>
-        <div class="parte-dois">
-          <div>
-            <h3>Doença</h3>
-            <input
-              id="nameId"
-              type="text"
-              v-model="newUsers.doencaId"
-              required
-            />
-          </div>
-          <div>
-            <h3>Data do Diagnóstico</h3>
-            <input id="data" type="date" v-model="newUsers.dataDiagnosticoId" />
-          </div>
-          <div>
-            <h3>Situação Atual</h3>
-            <input type="text" v-model="newUsers.situacaoId" required />
-          </div>
+      </div>
+      <div class="parte-dois">
+        <div>
+          <h3>Doença</h3>
+          <label for="doenca">Doença</label>
+          <input id="nameId" type="text" v-model="newUsers.doencaId" required />
         </div>
-        <div class="parte-tres">
-          <button class="vermelhopastel" type="submit" value="AddUser">
-            Enviar
-          </button>
+        <div>
+          <label for="datadiagnostico">Data do Diagnostico</label>
+          <input id="data" type="date" v-model="newUsers.dataDiagnosticoId" />
         </div>
+        <div>
+          <label for="situacao">Situção</label>
+          <input type="text" v-model="newUsers.situacaoId" required />
+        </div>
+      </div>
+      <div class="parte-um">
+        <h4><b>SESSÃO D:MEDICAÇÕES DE USO CONTÍNUO</b></h4>
+        <h4>POSTO DE SAÚDE INDÍGENA</h4>
+        <div id="medicamento">
+          <form id="form1" v-on:submit.prevent="addMedicamento">
+            <div>
+              <label for="medicamento">Medicamento</label>
+              <input id="data" type="date" v-model="newUsers.medicamentoId" />
+            </div>
+            <div>
+              <label for="doze">Doze</label>
+              <input id="data" type="date" v-model="newUsers.doze2Id" />
+            </div>
+            <div>
+              <label for="horarios">Horarios</label>
+              <input id="data" type="date" v-model="newUsers.horarioId" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="parte-dois">
+        <h4>Óbito</h4>
+        <div>
+       <label for="obito">Data Obito</label>
+       <input id="data" type="date" v-model="newUsers.obitoId" />
+     </div>
+     <div>
+       <label for="obito">Atestado de Óbito</label>
+       <input  type="text" v-model="newUsers.atestadoId" />
+     </div>   
+     <div>
+       <label for="situacao">Causas de Óbito</label>
+       <input type="causaobito" v-model="newUsers.causaObitoId" />
+     </div>             
+      </div>
+      <div class="parte-tres">
+        <button class="vermelhopastel" type="submit" value="AddUser">
+          Enviar
+        </button>
       </div>
     </form>
     <button class="voltar" @click="irParaInicio">VOLTAR</button>
@@ -169,6 +196,12 @@ export default {
         doencaId: "",
         dataDiagnosticoId: "",
         situacaoId: "",
+        medicamentoId: "",
+        doze2Id: "",
+        horarioId: "",
+        obitoId: "",
+        atestadoId: "",
+        causaObitoId: "",
       },
     };
   },
@@ -198,6 +231,12 @@ export default {
           doencaId: "",
           dataDiagnosticoId: "",
           situacaoId: "",
+          medicamentoId: "",
+          doze2Id: "",
+          horarioId: "",
+          obitoId: "",
+          atestadoId: "",
+          causaObitoId: "",
         };
       },
     },
@@ -230,11 +269,8 @@ export default {
             .map((el) => +el);
         const rest = (count, pop) =>
           ((toValidate(pop).reduce(
-            (soma, el, i) => soma + el * (count - i),
-            0
-          ) *
-            10) %
-            11) %
+            (soma, el, i) => soma + el * (count - i), 0 ) *
+            10) % 11) %
           10;
         return !(rest(10, 2) !== validator[0] || rest(11, 1) !== validator[1]);
       }
@@ -260,8 +296,14 @@ export default {
           lote: `${this.newUsers.loteId}`,
           validade: `${this.newUsers.validadeId}`,
           doencaId: `${this.newUsers.doencaId}`,
-          dataDiagnosticoId:`${this.newUsers.dataDiagnosticoId}`,
-          situacaoId:`${this.newUsers.situacaoId}`,
+          dataDiagnosticoId: `${this.newUsers.dataDiagnosticoId}`,
+          situacaoId: `${this.newUsers.situacaoId}`,
+          medicamentoId: `${this.newUsers.medicamentoId}`,
+          doze2Id: `${this.newUsers.doze2Id}`,
+          horarioId: `${this.newUsers.horarioId}`,
+          obitoId: `${this.newUsers.obitoId}`,
+          atestadoId: `${this.newUsers.atestadoId}`,
+          causaObitoId: `${this.newUsers.causaObitoId}`,
         });
       } else {
         return alert("CPF inserido é invalido");
@@ -278,8 +320,9 @@ input {
   width: 98%;
 }
 #form {
+  margin-top: 25px;
   background: #9ce0e9;
-  border: 1px solid rgb(255, 238, 238);
+  border: 1px solid #ffeeee;
   font-family: Arial;
   font-size: 27px;
   display: grid;
@@ -289,16 +332,17 @@ input {
   color: black;
 }
 .parte-um {
+  /*grid-area: parte-um;*/
   text-align: left;
   padding: 20px;
 }
 .parte-dois {
-  /* grid-area: parte-dois;*/
+  /*grid-area: parte-dois;*/
   text-align: left;
   padding: 20px;
 }
 .parte-tres {
-  /* grid-area: parte-tres;*/
+  /*grid-area: parte-tres;*/
   text-align: center;
 }
 </style>

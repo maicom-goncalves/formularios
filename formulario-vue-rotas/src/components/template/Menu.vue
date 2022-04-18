@@ -3,13 +3,13 @@
   <nav class="menu">
     <ul>
       <router-link to="/" tag="li" active-class="active" exact>
-        Início
+        INÍCIO
       </router-link>
       <router-link to="/usuario" tag="li" active-class="active" exact>
-        Usuário
+        USUÁRIO
       </router-link>
       <router-link to="/cadastro" tag="li" active-class="active" exact>
-        Cadastro
+        CADASTRO
       </router-link>
     </ul>
   </nav>
@@ -21,19 +21,18 @@ export default {};
 <style scoped>
 .menu ul {
     display: flex;    
-    background-color: #00a6ed;
+    background-color: #f1f0ea;
     list-style: none;
     padding: 3px;
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
-    font-size: 27px;
+    font-size: 37px;
+    text-align: center;
 }
-
 .menu li {
     flex: 1;
 }
-
 .menu a {
     display: flex;
     justify-content: center;
@@ -42,13 +41,17 @@ export default {};
     font-weight: 600;
     white-space: nowrap;
 }
-
+.menu ul :hover {
+    background-color: #3da5d9;
+    color: #FAF0CA;
+}
 .menu .active {
     background-color: #af2bbf;
+    color: whitesmoke;
 }
 
 .menu .active a {
-    color: #0c0c0c;
+    color: #da4167;
 }
 
 .menu a {

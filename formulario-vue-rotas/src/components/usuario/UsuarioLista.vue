@@ -36,7 +36,7 @@ export default {
     border: 3px solid #db4c40;
     border-radius: 8px;
     overflow: hidden;
-    font-size: 20px;
+    font-size: 23px;
     margin-bottom: 4px;
 }
 

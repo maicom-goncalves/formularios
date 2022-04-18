@@ -21,8 +21,8 @@ export default {
   align-content: space-around;
   padding-left: 140px;
   padding-right: 140px;
+  background-color: #ffffffa2;
 }
-
 .verdeagua {
   font-size: 45px;
   background-color: #41eb90;
