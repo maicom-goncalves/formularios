@@ -16,7 +16,10 @@
   </div>
 </template>
 <script>
-export default {};
+import "../../fonts/fontes.css";
+export default {
+
+};
 </script>
 <style scoped>
 .menu ul {
@@ -29,6 +32,7 @@ export default {};
     cursor: pointer;
     font-size: 37px;
     text-align: center;
+    font-family: 'Righteous', cursive;;
 }
 .menu li {
     flex: 1;

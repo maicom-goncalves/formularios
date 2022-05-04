@@ -6,13 +6,14 @@
 </template>
 
 <script>
+
 export default {
   methods: {
     irParaInicio() {
       //voltar a pagina incial
       this.$router.push({ name: "inicio" });
     },
-  },
+  }
 };
 </script>
 

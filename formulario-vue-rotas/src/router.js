@@ -42,7 +42,8 @@ const router = new Router({
         props:true,
         children:[
             {path:'',component:UsuarioLista},
-            {path:':id',component:UsuarioDetalhe,props:true,
+            {path:':id',component:UsuarioDetalhe,name:'usuario',props:true,
+            
               beforeEnter:(to,from,next) =>{
                 next()
               }},
