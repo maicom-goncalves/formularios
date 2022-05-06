@@ -25,6 +25,11 @@ export default {
   color: #ecebe3;
   border-radius: 15px;
   padding: 12px;
+  cursor: pointer;
+}
+.voltar:hover {
+  background-color: #48A9A6;
+  color: #fff;
 }
 .vermelhopastel {
   font-size: 45px;

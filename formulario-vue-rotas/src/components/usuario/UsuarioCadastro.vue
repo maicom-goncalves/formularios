@@ -129,7 +129,7 @@
           <form id="form1" v-on:submit.prevent="addMedicamento">
             <div>
               <label for="medicamento">Medicamento</label>
-              <input id="data" type="date" v-model="newUsers.medicamentoId" />
+              <input id="data" type="text" v-model="newUsers.medicamentoId" />
             </div>
             <div>
               <label for="doze">Doze</label>

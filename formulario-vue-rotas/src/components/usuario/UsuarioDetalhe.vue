@@ -1,41 +1,102 @@
 <template>
   <div class="usuario-detalhe">
-    <h3>Dados do morador</h3>
-    <hr />
-    <!-- :to="`/usuario/${$route.params.user}/editar`" -->
-    <form  @submit.prevent="onUpdateForm" class="dados-usuario">
+    <h2>Dados do morador</h2>
+    <table id="customers" @submit.prevent="onUpdateForm" class="dados-usuario">
       <h3>{{ user.nome }} {{ user.sobrenome }}</h3>
+      <hr />
+      <h4 clas="titulo" >Informações Pessoais</h4>
+      <tr>
+        <th>Nome da Mãe</th>
+        <th>Nome do Pai</th>
+        <th>Etnia</th>
+        <th>Aldeia</th>
+        <th>Polo base</th>
+        <th>Data de Nascimento</th>
+      </tr>
+      <tr>
+        <td>{{ user.Mae }}</td>
+        <td>{{ user.pai }}</td>
+        <td>{{ user.Etnia }}</td>
+        <td>{{ user.aldeia }}</td>
+        <td>{{ user.polobase }}</td>
+        <td>{{ user.data }}</td>
+      </tr>
+      <br />
+      <tr>
+        <th>Cartão do SUS</th>
+        <th>CPF</th>
+        <th>Município</th>
+      </tr>
+      <tr>
+        <td>{{ user.cartaosus }}</td>
+        <td>{{ user.cpf }}</td>
+        <td>{{user.cidade}}</td>
+      </tr>
+      <br />
+      <h4 clas="titulo" >Vacinas</h4 >
+      <tr>
+        <th>Nome da Vacina</th>
+        <th>Doze</th>
+        <th>Data</th>
+        <th>Lote</th>
+        <th>Validade</th>
+      </tr>
+      <tr>
+        <td>{{ user.vacina }}</td>
+        <td>{{ user.doze }}</td>
+        <td>{{ user.data2 }}</td>
+        <td>{{ user.lote }}</td>
+        <td>{{ user.validade }}</td>
+      </tr>
+      <h4 clas="titulo" >Doenças</h4>
+        <tr>
+        <th>ID</th>
+        <th>Data do Diagnostico</th>
+        <th>Data</th>
+        <th>Situação</th>
+      </tr>
+      <tr>
+        <td>{{ user.doencaId }}</td>
+        <td>{{ user.dataDiagnosticoId }}</td>
+        <td>{{ user.data2 }}</td>
+        <td>{{ user.situacaoId }}</td>
+      </tr>
+      <h4 clas="titulo" >Medicações de uso continuo</h4>
+       <tr>
+        <th>Medicamento</th>
+        <th>Doze</th>
+        <th>Horarios</th>
+      </tr>
+      <tr>
+        <td>{{ user.medicamentoId }}</td>
+        <td>{{ user.doze2Id }}</td>
+        <td>{{ user.horarioId }}</td>
+      </tr>
       <br/>
+      <router-link
+        class="editar"
+        :to="{ name: 'editarUsuario', params: { id: $route.params.id } }"
+      >
+        EDITAR
+      </router-link>
+    </table>
+
+    <!-- <form @submit.prevent="onUpdateForm" class="dados-usuario">
+      <h3>{{ user.nome }} {{ user.sobrenome }}</h3>
+      <br />
       <div>
         <p>Mãe: {{ user.Mae }}</p>
       </div>
       <div>
         <p>Pai {{ user.pai }}</p>
       </div>
-      <p>etnia:{{ user.etnia }}</p>
-      <p>aldeia:{{ user.aldeia }}</p>
-      <p>Polo-base:{{ user.polobase }}</p>
-      <p>cartão do SUS:{{ user.cartaosus }}</p>
-      <p>CPF:{{ user.cpf }}</p>
-      <p>Data de Nascimento:{{ user.data }}</p>
-      <b>Vacinas</b>
-      <p>vacina:{{user.vacina}}</p>
-      <p>Doze:{{user.doze}}</p>
-      <p>Data:{{user.data2}}</p>
-      <p>Lote:{{user.lote}}</p>
-      <p>Validade:{{user.validade}}</p>
-      <b>Doenças</b>
-      <p>ID:{{user.doencaId}}</p>
-      <p>Diagnostico:{{user.dataDiagnosticoId}}</p>
-      <p>Situação:{{user.situacaoId}}</p>
-      <p></p>
-    </form>
+    </form>-->
   </div>
 </template>
 
 <script>
 import { db } from "../../firebase";
-import "../../fonts/fontes.css"
+import "../../fonts/fontes.css";
 export default {
   props: ["id"],
 
@@ -81,18 +142,63 @@ export default {
 };
 </script>
 
-<style>
-.dados-usuario{
-  font-family: 'Hind Madurai', sans-serif;
-  font-size: 30px;
-  margin-top: 25px;
+<style scoped>
+/*.dados-usuario {
+  
   background: #f1f0ea;
   border: 1px solid #ffeeee;
   display: grid;
-  /*grid-template-columns: 1fr 1fr;
-  grid-auto-columns: 800px;*/
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 800px;
+  
+}*/
+.usuario-detalhe{
+  text-align:justify;
+}
+h3{font-size: 40;}
+.titulo {font-size: 38;}
+#customers {
+  font-family: "Hind Madurai", sans-serif;
+  margin-top: 25px;
   border-radius: 18px;
   color: black;
   padding: 20px;
+  margin: 5px;
+}
+#customers td{font-size: 30px;}
+#customers tr:nth-child(even) {
+  background-color: #f1f0ea;
+}
+#customers tr:hover {
+  background-color: #ddd;
+}
+
+#customers th {
+  background-color: #04aa6d;
+  color: white;
+  font-family: "Hind Madurai", sans-serif;
+  font-size: 37px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  padding: 8px;
+}
+.editar {
+  font-size: 38px;
+  background-color: #942911;
+  border-style: none;
+  color: #ffffff;
+  border-radius: 20px;
+  margin: 5px;
+  cursor: pointer;
+  margin: 20px;
+  padding: 12px;
+  list-style: none;
+  text-decoration: none;
+}
+.editar:hover {
+  background-color: #9d8420;
+  color: #fff;
 }
 </style>
