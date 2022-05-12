@@ -1,40 +1,90 @@
 <template>
   <div class="usuario-editar">
-    <h3>Usuário Editar</h3>
-    <p><strong>Código:</strong>{{ id }}</p>
-    <p><strong>Completo:</strong>{{ $route.query.completo ? "Sim" : "Não" }}</p>
-     <form @submit.prevent="onUpdateForm" class="dados-usuario">
+    <h3>Editar</h3>
+    <form @submit.prevent="onUpdateForm" id="editar">
       <h3>{{ user.nome }} {{ user.sobrenome }}</h3>
+      <hr />
+        <table>
+      <hr />
+      <h4 clas="titulo" >Editando</h4>
+      <tr>
+        <th>Nome da Mãe</th>
+        <th>Nome do Pai</th>
+        <th>Etnia</th>
+        <th>Aldeia</th>
+        <th>Polo base</th>
+        <th>Data de Nascimento</th>
+       
+      </tr>
+      <tr>
+        <td><input type="text" v-model="user.Mae"/></td>
+        <td><input type="text" v-model="user.pai"/></td>
+        <td><input type="text" v-model="user.Etnia"/></td>
+        <td><input type="text" v-model="user.aldeia"/></td>
+        <td><input type="text" v-model="user.polobase"/></td>
+        <td><input type="data" v-model="user.data"/></td>
+      </tr>
       <br />
-      <div>
-        <p>Mãe: {{ user.Mae }}</p>
-      </div>
-      <div>
-        <p>Pai {{ user.pai }}</p>
-      </div>
-      <p>etnia:{{ user.etnia }}</p>
-      <p>aldeia:{{ user.aldeia }}</p>
-      <p>Polo-base:{{ user.polobase }}</p>
-      <p>cartão do SUS:{{ user.cartaosus }}</p>
-      <p>CPF:{{ user.cpf }}</p>
-      <p>Data de Nascimento:{{ user.data }}</p>
-      <b>Vacinas</b>
-      <p>vacina:{{ user.vacina }}</p>
-      <p>Doze:{{ user.doze }}</p>
-      <p>Data:{{ user.data2 }}</p>
-      <p>Lote:{{ user.lote }}</p>
-      <p>Validade:{{ user.validade }}</p>
-      <b>Doenças</b>
-      <p>ID:{{ user.doencaId }}</p>
-      <p>Diagnostico:{{ user.dataDiagnosticoId }}</p>
-      <p>Situação:{{ user.situacaoId }}</p>
-      <p></p>
+      <tr>
+        <th>Cartão do SUS</th>
+        <th>CPF</th>
+        <th>Município</th>
+        <th>Numero da casa</th>
+        <th>Sexo</th>
+      </tr>
+      <tr>
+        <td><input type="number" v-model="user.cartaosus"/></td>
+        <td><input type="text" v-model="user.cpf"/></td>
+        <td><input type="text" v-model="user.cidade"/></td>
+        <td><input type="text" v-model="user.casa"/></td>
+        <td><input type="text" v-model="user.genero"/></td>
+      </tr>
+      <br />
+      <h4 clas="titulo" >Vacinas</h4 >
+      <tr>
+        <th>Nome da Vacina</th>
+        <th>Doze</th>
+        <th>Data</th>
+        <th>Lote</th>
+        <th>Validade</th>
+      </tr>
+      <tr>
+        <td>{{ user.vacina }}</td>
+        <td>{{ user.doze }}</td>
+        <td>{{ user.data2 }}</td>
+        <td>{{ user.lote }}</td>
+        <td>{{ user.validade }}</td>
+      </tr>
+      <h4 clas="titulo" >Doenças</h4>
+        <tr>
+        <th>ID</th>
+        <th>Data do Diagnostico</th>
+        <th>Data</th>
+        <th>Situação</th>
+      </tr>
+      <tr>
+        <td>{{ user.doencaId }}</td>
+        <td>{{ user.dataDiagnosticoId }}</td>
+        <td>{{ user.data2 }}</td>
+        <td>{{ user.situacaoId }}</td>
+      </tr>
+      <h4 clas="titulo" >Medicações de uso continuo</h4>
+       <tr>
+        <th>Medicamento</th>
+        <th>Doze</th>
+        <th>Horarios</th>
+      </tr>
+      <tr>
+        <td>{{ user.medicamentoId }}</td>
+        <td>{{ user.doze2Id }}</td>
+        <td>{{ user.horarioId }}</td>
+      </tr>
+      <br/>
+        </table>
+        <button class="verde" @click="confirmou = true">Confirmar</button>
     </form>
-    <hr />
-    <button primario @click="confirmou = true">Confirmar</button>
-    <div id="rodape">
-      <h3>Curso Vue</h3>
-    </div>
+    
+    
   </div>
 </template>
 
@@ -60,7 +110,7 @@ export default {
         .doc(this.id)
         .update(this.user)
         .then(() => {
-          console.log("User successfully updated!");
+          console.log("Usuario Modificado com sucesso");
           this.$router.push("/list");
         })
         .catch((error) => {
@@ -93,8 +143,58 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #rodape {
   margin-top: 1000px;
+}
+.usuario-detalhe{
+  text-align:justify;
+}
+h3{font-size: 40;}
+.titulo {font-size: 38;}
+#editar {
+  font-family: "Hind Madurai", sans-serif;
+  margin-top: 25px;
+  border-radius: 18px;
+  color: black;
+  padding: 20px;
+  margin: 5px;
+}
+#editar td{font-size: 30px;}
+#editar tr:nth-child(even) {
+  background-color: #f1f0ea;
+}
+#editar tr:hover {
+  background-color: #ddd;
+}
+
+#editar th {
+  background-color: #04aa6d;
+  color: white;
+  font-family: "Hind Madurai", sans-serif;
+  font-size: 37px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  padding: 8px;
+}
+#editar input {
+  font-size: 18pt;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  width: 86%;
+}
+.verde {
+  font-size: 45px;
+  background-color: #2ba162;
+  border-style:none;
+  color: #ecebe3;
+  border-radius: 20px;
+  margin: 6px;
+  cursor: pointer;
+  margin: 8px;
+  padding: 12px;
+  text-align: center;
 }
 </style>

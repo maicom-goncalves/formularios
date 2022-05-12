@@ -12,6 +12,7 @@
         <th>Aldeia</th>
         <th>Polo base</th>
         <th>Data de Nascimento</th>
+       
       </tr>
       <tr>
         <td>{{ user.Mae }}</td>
@@ -26,11 +27,15 @@
         <th>Cartão do SUS</th>
         <th>CPF</th>
         <th>Município</th>
+        <th>Numero da casa</th>
+        <th>Sexo</th>
       </tr>
       <tr>
         <td>{{ user.cartaosus }}</td>
         <td>{{ user.cpf }}</td>
         <td>{{user.cidade}}</td>
+        <td>{{user.casa}}</td>
+        <td>{{user.genero}}</td>
       </tr>
       <br />
       <h4 clas="titulo" >Vacinas</h4 >
@@ -73,24 +78,10 @@
         <td>{{ user.horarioId }}</td>
       </tr>
       <br/>
-      <router-link
-        class="editar"
-        :to="{ name: 'editarUsuario', params: { id: $route.params.id } }"
-      >
+      <router-link class="editar" :to="{ name: 'editarUsuario', params: { id: $route.params.id } }">
         EDITAR
       </router-link>
     </table>
-
-    <!-- <form @submit.prevent="onUpdateForm" class="dados-usuario">
-      <h3>{{ user.nome }} {{ user.sobrenome }}</h3>
-      <br />
-      <div>
-        <p>Mãe: {{ user.Mae }}</p>
-      </div>
-      <div>
-        <p>Pai {{ user.pai }}</p>
-      </div>
-    </form>-->
   </div>
 </template>
 

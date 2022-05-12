@@ -44,7 +44,7 @@
       <div class="parte-dois">
         <div>
           <label for="nascimento">Nascimento</label>
-          <input id="nascimento" type="date" v-model="newUsers.dateId" />
+          <input id="nascimento" type="date" v-model="newUsers.dateId" required />
         </div>
         <div>
           <label for="pai">Nome do Pai</label>
@@ -58,7 +58,7 @@
         <hr />
         <div>
           <label for="sex">Sexo</label>
-          <input id="genero" />
+          <input id="genero" v-model="newUsers.generoId" required/>
         </div>
         <div>
           <label for="altura">N° da casa</label>
@@ -96,7 +96,7 @@
         </div>
         <div>
           <label for="data">Data</label>
-          <input id="data" type="date" v-model="newUsers.dataId" />
+          <input id="data" type="date" v-model="newUsers.dataId" required />
         </div>
         <div>
           <label for="lote">Lote</label>
@@ -177,6 +177,7 @@ export default {
       newUsers: {
         nameId: "",
         lastnameId: "",
+        generoId:"",
         cpfId: "",
         houseId: "",
         etnosId: "",
@@ -212,6 +213,7 @@ export default {
         return {
           nameId: "",
           lastnameId: "",
+          generoId:"",
           cpfId: "",
           houseId: "",
           etnosId: "",
@@ -280,6 +282,7 @@ export default {
         db.collection("users").add({
           nome: `${this.newUsers.nameId}`,
           sobrenome: `${this.newUsers.lastnameId}`,
+          genero:`${this.newUsers.generoId}`,
           cpf: `${this.newUsers.cpfId}`,
           casa: `${this.newUsers.houseId}`,
           Etnia: `${this.newUsers.etnosId}`,
