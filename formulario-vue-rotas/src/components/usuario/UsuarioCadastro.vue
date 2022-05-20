@@ -1,7 +1,9 @@
 <template>
   <div id="formularioId">
-    <form id="form" v-on:submit.prevent="addUser">
+    
+    <form id="form" v-on:submit.prevent="addUser" v-if="!enviado">
       <div class="parte-um">
+        <h3>Identificação</h3>
         <div>
           <label for="nome">Nome</label>
           <input id="nameId" type="text" v-model="newUsers.nameId" required />
@@ -42,9 +44,15 @@
         </div>
       </div>
       <div class="parte-dois">
+        <br/>
         <div>
           <label for="nascimento">Nascimento</label>
-          <input id="nascimento" type="date" v-model="newUsers.dateId" required />
+          <input
+            id="nascimento"
+            type="date"
+            v-model="newUsers.dateId"
+            required
+          />
         </div>
         <div>
           <label for="pai">Nome do Pai</label>
@@ -55,10 +63,23 @@
           <label for="house">Casa</label>
           <input id="casa" type="number" v-model="newUsers.houseId" required />
         </div>
-        <hr />
-        <div>
-          <label for="sex">Sexo</label>
-          <input id="genero" v-model="newUsers.generoId" required/>
+        <!--<hr />-->
+        <p>Sexo</p>
+        <div class="genero">
+          <label for="masculino">Masculino</label>
+          <input
+            v-model="newUsers.generoId"
+            type="radio"
+            required
+            value="Masculino"
+          />
+          <label for="feminino">Feminino</label>
+          <input
+            v-model="newUsers.generoId"
+            type="radio"
+            required
+            value="Feminino"
+          />
         </div>
         <div>
           <label for="altura">N° da casa</label>
@@ -126,7 +147,7 @@
         <h4><b>SESSÃO D:MEDICAÇÕES DE USO CONTÍNUO</b></h4>
         <h4>POSTO DE SAÚDE INDÍGENA</h4>
         <div id="medicamento">
-          <form id="form1" v-on:submit.prevent="addMedicamento">
+          <form id="form1">
             <div>
               <label for="medicamento">Medicamento</label>
               <input id="data" type="text" v-model="newUsers.medicamentoId" />
@@ -145,17 +166,17 @@
       <div class="parte-dois">
         <h4>Óbito</h4>
         <div>
-       <label for="obito">Data Obito</label>
-       <input id="data" type="date" v-model="newUsers.obitoId" />
-     </div>
-     <div>
-       <label for="obito">Atestado de Óbito</label>
-       <input  type="text" v-model="newUsers.atestadoId" />
-     </div>   
-     <div>
-       <label for="situacao">Causas de Óbito</label>
-       <input type="causaobito" v-model="newUsers.causaObitoId" />
-     </div>             
+          <label for="obito">Data Obito</label>
+          <input id="data" type="date" v-model="newUsers.obitoId" />
+        </div>
+        <div>
+          <label for="obito">Atestado de Óbito</label>
+          <input type="text" v-model="newUsers.atestadoId" />
+        </div>
+        <div>
+          <label for="situacao">Causas de Óbito</label>
+          <input type="causaobito" v-model="newUsers.causaObitoId" />
+        </div>
       </div>
       <div class="parte-tres">
         <button class="vermelhopastel" type="submit" value="AddUser">
@@ -163,6 +184,12 @@
         </button>
       </div>
     </form>
+    <div class="enviado" v-else>
+      <span>Enviado com sucesso</span>
+      <button class="novoCadstro" @click="() => (enviado = false)">
+        Novo Cadastro
+      </button>
+    </div>
     <button class="voltar" @click="irParaInicio">VOLTAR</button>
   </div>
 </template>
@@ -170,14 +197,14 @@
 <script>
 import { db } from "../../firebase";
 export default {
-  //name: "formularioId",
   data() {
     return {
+      enviado: false,
       users: [],
       newUsers: {
         nameId: "",
         lastnameId: "",
-        generoId:"",
+        generoId: "",
         cpfId: "",
         houseId: "",
         etnosId: "",
@@ -213,7 +240,7 @@ export default {
         return {
           nameId: "",
           lastnameId: "",
-          generoId:"",
+          generoId: "",
           cpfId: "",
           houseId: "",
           etnosId: "",
@@ -271,8 +298,11 @@ export default {
             .map((el) => +el);
         const rest = (count, pop) =>
           ((toValidate(pop).reduce(
-            (soma, el, i) => soma + el * (count - i), 0 ) *
-            10) % 11) %
+            (soma, el, i) => soma + el * (count - i),
+            0
+          ) *
+            10) %
+            11) %
           10;
         return !(rest(10, 2) !== validator[0] || rest(11, 1) !== validator[1]);
       }
@@ -282,7 +312,7 @@ export default {
         db.collection("users").add({
           nome: `${this.newUsers.nameId}`,
           sobrenome: `${this.newUsers.lastnameId}`,
-          genero:`${this.newUsers.generoId}`,
+          genero: `${this.newUsers.generoId}`,
           cpf: `${this.newUsers.cpfId}`,
           casa: `${this.newUsers.houseId}`,
           Etnia: `${this.newUsers.etnosId}`,
@@ -308,6 +338,7 @@ export default {
           atestadoId: `${this.newUsers.atestadoId}`,
           causaObitoId: `${this.newUsers.causaObitoId}`,
         });
+        this.enviado = true;
       } else {
         return alert("CPF inserido é invalido");
       }
@@ -334,6 +365,23 @@ input {
   border-radius: 18px;
   color: black;
 }
+.genero {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.genero label {
+  margin-right: 5px;
+  line-height: 5px;
+  text-align: justify;
+}
+.genero input {
+  border-radius: 50%;
+  width: 36px;
+  height: 26px;
+  border: 2px solid rgb(26, 25, 25);
+  margin-right: 5px;
+}
 .parte-um {
   /*grid-area: parte-um;*/
   text-align: left;
@@ -347,5 +395,22 @@ input {
 .parte-tres {
   /*grid-area: parte-tres;*/
   text-align: center;
+}
+.enviado {
+  font-size: 45px;
+  text-align: center;
+}
+.novoCadastro {
+  font-size: 40px;
+  background-color: #2b93a5;
+  border-style: none;
+  color: #ecebe3;
+  border-radius: 15px;
+  padding: 12px;
+  cursor: pointer;
+}
+.novoCadastro:hover {
+  background-color: #375c5b;
+  color: #fff;
 }
 </style>

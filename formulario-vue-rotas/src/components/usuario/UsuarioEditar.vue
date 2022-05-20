@@ -22,7 +22,7 @@
         <td><input type="text" v-model="user.Etnia"/></td>
         <td><input type="text" v-model="user.aldeia"/></td>
         <td><input type="text" v-model="user.polobase"/></td>
-        <td><input type="data" v-model="user.data"/></td>
+        <td><input type="date" v-model="user.data"/></td>
       </tr>
       <br />
       <tr>
@@ -49,24 +49,22 @@
         <th>Validade</th>
       </tr>
       <tr>
-        <td>{{ user.vacina }}</td>
-        <td>{{ user.doze }}</td>
-        <td>{{ user.data2 }}</td>
-        <td>{{ user.lote }}</td>
-        <td>{{ user.validade }}</td>
+        <td><input type="text" v-model="user.vacina"/></td>
+        <td><input type="text" v-model="user.doze"/></td>
+        <td><input type="date" v-model="user.data2"/></td>
+        <td><input type="text" v-model="user.lote"/></td>
+        <td><input type="text" v-model="user.validade"/></td>
       </tr>
       <h4 clas="titulo" >Doenças</h4>
         <tr>
         <th>ID</th>
         <th>Data do Diagnostico</th>
-        <th>Data</th>
         <th>Situação</th>
       </tr>
       <tr>
-        <td>{{ user.doencaId }}</td>
-        <td>{{ user.dataDiagnosticoId }}</td>
-        <td>{{ user.data2 }}</td>
-        <td>{{ user.situacaoId }}</td>
+        <td><input type="text" v-model="user.doencaId"/></td>
+        <td><input type="date" v-model="user.dataDiagnosticoId"/></td>
+        <td><input type="text" v-model="user.situacaoId"/></td>
       </tr>
       <h4 clas="titulo" >Medicações de uso continuo</h4>
        <tr>
@@ -75,9 +73,9 @@
         <th>Horarios</th>
       </tr>
       <tr>
-        <td>{{ user.medicamentoId }}</td>
-        <td>{{ user.doze2Id }}</td>
-        <td>{{ user.horarioId }}</td>
+        <td><input type="text" v-model="user.medicamentoId"/></td>
+        <td><input type="date" v-model="user.doze2Id"/></td>
+        <td><input type="date" v-model="horarioId"/></td>
       </tr>
       <br/>
         </table>

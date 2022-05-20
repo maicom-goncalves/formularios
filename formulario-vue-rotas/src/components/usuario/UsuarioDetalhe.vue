@@ -134,15 +134,7 @@ export default {
 </script>
 
 <style scoped>
-/*.dados-usuario {
-  
-  background: #f1f0ea;
-  border: 1px solid #ffeeee;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-columns: 800px;
-  
-}*/
+
 .usuario-detalhe{
   text-align:justify;
 }
