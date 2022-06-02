@@ -1,6 +1,5 @@
 <template>
   <div id="formularioId">
-    
     <form id="form" v-on:submit.prevent="addUser" v-if="!enviado">
       <div class="parte-um">
         <h3>Identificação</h3>
@@ -44,7 +43,7 @@
         </div>
       </div>
       <div class="parte-dois">
-        <br/>
+        <br />
         <div>
           <label for="nascimento">Nascimento</label>
           <input
@@ -129,23 +128,26 @@
         </div>
       </div>
       <div class="parte-dois">
-        <div>
-          <h3>Doença</h3>
+        <h3>Doença</h3>
+        <label class="switch">
+          <input type="checkbox" v-on:input="doencashow = !doencashow" />
+          <span class="slider round"></span>
+        </label>
+        <div v-if="!doencashow">
           <label for="doenca">Doença</label>
           <input id="nameId" type="text" v-model="newUsers.doencaId" required />
-        </div>
-        <div>
-          <label for="datadiagnostico">Data do Diagnostico</label>
-          <input id="data" type="date" v-model="newUsers.dataDiagnosticoId" />
-        </div>
-        <div>
-          <label for="situacao">Situção</label>
-          <input type="text" v-model="newUsers.situacaoId" required />
+          <div>
+            <label for="datadiagnostico">Data do Diagnostico</label>
+            <input id="data" type="date" v-model="newUsers.dataDiagnosticoId" />
+          </div>
+          <div>
+            <label for="situacao">Situção</label>
+            <input type="text" v-model="newUsers.situacaoId" required />
+          </div>
         </div>
       </div>
       <div class="parte-um">
         <h4><b>SESSÃO D:MEDICAÇÕES DE USO CONTÍNUO</b></h4>
-        <h4>POSTO DE SAÚDE INDÍGENA</h4>
         <div id="medicamento">
           <form id="form1">
             <div>
@@ -165,17 +167,23 @@
       </div>
       <div class="parte-dois">
         <h4>Óbito</h4>
-        <div>
-          <label for="obito">Data Obito</label>
-          <input id="data" type="date" v-model="newUsers.obitoId" />
-        </div>
-        <div>
-          <label for="obito">Atestado de Óbito</label>
-          <input type="text" v-model="newUsers.atestadoId" />
-        </div>
-        <div>
-          <label for="situacao">Causas de Óbito</label>
-          <input type="causaobito" v-model="newUsers.causaObitoId" />
+        <label class="switch">
+          <input type="checkbox" v-on:input="obitoshow = !obitoshow" />
+          <span class="slider round"></span>
+        </label>
+        <div v-if="!obitoshow">
+          <div>
+            <label for="obito">Data Obito</label>
+            <input id="data" type="date" v-model="newUsers.obitoId" />
+          </div>
+          <div>
+            <label for="obito">Atestado de Óbito</label>
+            <input type="text" v-model="newUsers.atestadoId" />
+          </div>
+          <div>
+            <label for="situacao">Causas de Óbito</label>
+            <input type="causaobito" v-model="newUsers.causaObitoId" />
+          </div>
         </div>
       </div>
       <div class="parte-tres">
@@ -231,6 +239,9 @@ export default {
         atestadoId: "",
         causaObitoId: "",
       },
+      doencashow: true,
+      obitoshow: true,
+      texto: "SIM",
     };
   },
   props: {
