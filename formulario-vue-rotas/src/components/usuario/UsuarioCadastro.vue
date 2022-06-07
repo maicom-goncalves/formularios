@@ -62,7 +62,6 @@
           <label for="house">Casa</label>
           <input id="casa" type="number" v-model="newUsers.houseId" required />
         </div>
-        <!--<hr />-->
         <p>Sexo</p>
         <div class="genero">
           <label for="masculino">Masculino</label>
@@ -129,27 +128,53 @@
       </div>
       <div class="parte-dois">
         <h3>Doença</h3>
+        <transition name="fade" mode="out-in">
+          <b v-if="!doencashow">sim</b>
+          <b v-if="doencashow">não</b>
+        </transition>
         <label class="switch">
           <input type="checkbox" v-on:input="doencashow = !doencashow" />
           <span class="slider round"></span>
         </label>
-        <div v-if="!doencashow">
-          <label for="doenca">Doença</label>
-          <input id="nameId" type="text" v-model="newUsers.doencaId" required />
-          <div>
-            <label for="datadiagnostico">Data do Diagnostico</label>
-            <input id="data" type="date" v-model="newUsers.dataDiagnosticoId" />
+        <transition name="slide-fade">
+          <div v-if="!doencashow">
+            <label for="doenca">Doença</label>
+            <input
+              id="nameId"
+              type="text"
+              v-model="newUsers.doencaId"
+              required
+            />
+            <div>
+              <label for="datadiagnostico">Data do Diagnostico</label>
+              <input
+                id="data"
+                type="date"
+                v-model="newUsers.dataDiagnosticoId"
+              />
+            </div>
+            <div>
+              <label for="situacao">Situção</label>
+              <input type="text" v-model="newUsers.situacaoId" required />
+            </div>
           </div>
-          <div>
-            <label for="situacao">Situção</label>
-            <input type="text" v-model="newUsers.situacaoId" required />
-          </div>
-        </div>
+        </transition>
       </div>
       <div class="parte-um">
         <h4><b>SESSÃO D:MEDICAÇÕES DE USO CONTÍNUO</b></h4>
-        <div id="medicamento">
-          <form id="form1">
+        <transition name="fade" mode="out-in">
+          <b v-if="!medicamentoshow">sim</b>
+          <b v-if="medicamentoshow">não</b>
+        </transition>
+        <label class="switch">
+          <input
+            type="checkbox"
+            v-on:input="medicamentoshow = !medicamentoshow"
+          />
+          <span class="slider round"></span>
+        </label>
+        <transition name="slide-fade">
+          <div id="medicamento" v-if="!medicamentoshow">
             <div>
               <label for="medicamento">Medicamento</label>
               <input id="data" type="text" v-model="newUsers.medicamentoId" />
@@ -162,29 +187,35 @@
               <label for="horarios">Horarios</label>
               <input id="data" type="date" v-model="newUsers.horarioId" />
             </div>
-          </form>
-        </div>
+          </div>
+        </transition>
       </div>
       <div class="parte-dois">
         <h4>Óbito</h4>
+        <transition name="fade" mode="out-in">
+          <b v-if="!obitoshow">sim</b>
+          <b v-if="obitoshow">não</b>
+        </transition>
         <label class="switch">
           <input type="checkbox" v-on:input="obitoshow = !obitoshow" />
           <span class="slider round"></span>
         </label>
-        <div v-if="!obitoshow">
-          <div>
-            <label for="obito">Data Obito</label>
-            <input id="data" type="date" v-model="newUsers.obitoId" />
+        <transition name="slide-fade">
+          <div v-if="!obitoshow">
+            <div>
+              <label for="obito">Data Obito</label>
+              <input id="data" type="date" v-model="newUsers.obitoId" />
+            </div>
+            <div>
+              <label for="obito">Atestado de Óbito</label>
+              <input type="text" v-model="newUsers.atestadoId" />
+            </div>
+            <div>
+              <label for="situacao">Causas de Óbito</label>
+              <input type="causaobito" v-model="newUsers.causaObitoId" />
+            </div>
           </div>
-          <div>
-            <label for="obito">Atestado de Óbito</label>
-            <input type="text" v-model="newUsers.atestadoId" />
-          </div>
-          <div>
-            <label for="situacao">Causas de Óbito</label>
-            <input type="causaobito" v-model="newUsers.causaObitoId" />
-          </div>
-        </div>
+        </transition>
       </div>
       <div class="parte-tres">
         <button class="vermelhopastel" type="submit" value="AddUser">
@@ -241,6 +272,7 @@ export default {
       },
       doencashow: true,
       obitoshow: true,
+      medicamentoshow: true,
       texto: "SIM",
     };
   },
@@ -294,7 +326,6 @@ export default {
     addUser: function () {
       function TestaCPF(cpf) {
         if (typeof cpf !== "string") return false;
-        // Tirar formatação
         cpf = cpf.replace(/[^\d]+/g, "");
         if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false;
         cpf = cpf.split("");
@@ -319,7 +350,6 @@ export default {
       }
       var strCPF = TestaCPF(`${this.newUsers.cpfId}`);
       if (strCPF == true) {
-        //console.log("escrito no Firestore");
         db.collection("users").add({
           nome: `${this.newUsers.nameId}`,
           sobrenome: `${this.newUsers.lastnameId}`,

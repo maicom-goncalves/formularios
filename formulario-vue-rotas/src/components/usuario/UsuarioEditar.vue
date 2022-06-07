@@ -2,7 +2,7 @@
   <div class="usuario-editar">
     <h3>Editar</h3>
     <form @submit.prevent="onUpdateForm" id="editar">
-      <h3>{{ user.nome }} {{ user.sobrenome }}</h3>
+      <h3 id="nomesobrenome">{{ user.nome }} {{ user.sobrenome }}</h3>
       <hr />
         <table>
       <hr />
@@ -142,13 +142,16 @@ export default {
 </script>
 
 <style scoped>
+#nomesobrenome{
+  font-size: 39px ;
+  color:#115f37;
+}
 #rodape {
   margin-top: 1000px;
 }
 .usuario-detalhe{
   text-align:justify;
 }
-h3{font-size: 40;}
 .titulo {font-size: 38;}
 #editar {
   font-family: "Hind Madurai", sans-serif;

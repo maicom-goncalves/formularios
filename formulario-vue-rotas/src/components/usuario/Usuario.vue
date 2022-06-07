@@ -53,7 +53,6 @@ export default {
   width: 0;
   height: 0;
 }
-
 /* The slider */
 .slider {
   position: absolute;
@@ -94,10 +93,23 @@ input:checked + .slider:before {
 }
 .slider.round {
   border-radius: 44px;
+  
 }
-
 .slider.round:before {
   border-radius: 50%;
+  
+}
+.slide-fade-enter-active {
+  /*transition: all .5s ease;*/
+ transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-leave-active {
+  transition: all .6s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active em versões anteriores a 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
 }
 
 </style>

@@ -2,7 +2,7 @@
   <div class="usuario-detalhe">
     <h2>Dados do morador</h2>
     <table id="customers" @submit.prevent="onUpdateForm" class="dados-usuario">
-      <h3>{{ user.nome }} {{ user.sobrenome }}</h3>
+      <h3 id="nomesobrenome">{{ user.nome }} {{ user.sobrenome }}</h3>
       <hr />
       <h4 clas="titulo" >Informações Pessoais</h4>
       <tr>
@@ -134,11 +134,13 @@ export default {
 </script>
 
 <style scoped>
-
+#nomesobrenome{
+  font-size: 39px ;
+  color:#115f37;
+}
 .usuario-detalhe{
   text-align:justify;
 }
-h3{font-size: 40;}
 .titulo {font-size: 38;}
 #customers {
   font-family: "Hind Madurai", sans-serif;
@@ -168,7 +170,7 @@ h3{font-size: 40;}
   padding: 8px;
 }
 .editar {
-  font-size: 38px;
+  /*font-size: 38px;*/
   background-color: #942911;
   border-style: none;
   color: #ffffff;
