@@ -2,44 +2,105 @@
   <div id="formularioId">
     <form id="form" v-on:submit.prevent="addUser" v-if="!enviado">
       <div class="parte-um">
-        <h3>Identificação</h3>
         <div>
-          <label for="nome">Nome</label>
-          <input id="nameId" type="text" v-model="newUsers.nameId" required />
+          <h3>Identificação</h3>
+          <div>
+            <label for="nome">Nome</label>
+            <input id="nameId" type="text" v-model="newUsers.nameId" required />
+          </div>
+          <div>
+            <label for="mae">Nome da mãe</label>
+            <input
+              id="mother"
+              type="text"
+              v-model="newUsers.motherId"
+              required
+            />
+          </div>
+          <div>
+            <label for="sobrenome">Sobrenome</label>
+            <input
+              id="lastnameId"
+              type="text"
+              v-model="newUsers.lastnameId"
+              required
+            />
+          </div>
+          <div>
+            <label for="etnos">Etnia</label>
+            <input id="etnia" type="text" v-model="newUsers.etnosId" required />
+          </div>
+          <div>
+            <label for="residencia">Aldeia de Residência</label>
+            <input id="residence" v-model="newUsers.residenceId" />
+          </div>
+          <div>
+            <label for="city">Município</label>
+            <input id="cidade" v-model="newUsers.cityId" />
+          </div>
+          <div>
+            <label for="sus">N° do Cartão SUS</label>
+            <input
+              id="saudesus"
+              type="number"
+              value="0"
+              v-model="newUsers.cardsusId"
+            />
+          </div>
         </div>
         <div>
-          <label for="mae">Nome da mãe</label>
-          <input id="mother" type="text" v-model="newUsers.motherId" required />
+          <h3>VACINA</h3>
+          <div>
+            <label for="vacina">vacina</label>
+            <input id="vacina" type="text" v-model="newUsers.vacinaId" />
+          </div>
+          <div>
+            <label for="doze">Doze</label>
+            <input id="doze" type="text" v-model="newUsers.dozeId" />
+          </div>
+          <div>
+            <label for="data">Data</label>
+            <input id="data" type="date" v-model="newUsers.dataId" required />
+          </div>
+          <div>
+            <label for="lote">Lote</label>
+            <input id="lote" type="text" v-model="newUsers.loteId" />
+          </div>
+          <div>
+            <label for="validade">Validade</label>
+            <input id="validade" type="date" v-model="newUsers.validadeId" />
+          </div>
         </div>
+
         <div>
-          <label for="sobrenome">Sobrenome</label>
-          <input
-            id="lastnameId"
-            type="text"
-            v-model="newUsers.lastnameId"
-            required
-          />
-        </div>
-        <div>
-          <label for="etnos">Etnia</label>
-          <input id="etnia" type="text" v-model="newUsers.etnosId" required />
-        </div>
-        <div>
-          <label for="residencia">Aldeia de Residência</label>
-          <input id="residence" v-model="newUsers.residenceId" />
-        </div>
-        <div>
-          <label for="city">Município</label>
-          <input id="cidade" v-model="newUsers.cityId" />
-        </div>
-        <div>
-          <label for="sus">N° do Cartão SUS</label>
-          <input
-            id="saudesus"
-            type="number"
-            value="0"
-            v-model="newUsers.cardsusId"
-          />
+          <h4><b>SESSÃO D:MEDICAÇÕES DE USO CONTÍNUO</b></h4>
+          <transition name="fade" mode="out-in">
+            <b v-if="!medicamentoshow">sim</b>
+            <b v-if="medicamentoshow">não</b>
+          </transition>
+          <label class="switch">
+            <input
+              type="checkbox"
+              v-on:input="medicamentoshow = !medicamentoshow"
+            />
+            <span class="slider round"></span>
+          </label>
+          <transition name="slide-fade">
+            <div id="medicamento" v-if="!medicamentoshow">
+              <div>
+                <label for="medicamento">Medicamento</label>
+                <input id="data" type="text" v-model="newUsers.medicamentoId" />
+              </div>
+              <div>
+                <label for="doze">Doze</label>
+                <input id="data" type="date" v-model="newUsers.doze2Id" />
+              </div>
+              <div>
+                <label for="horarios">Horarios</label>
+                <input id="data" type="date" v-model="newUsers.horarioId" />
+              </div>
+            </div>
+          </transition>
         </div>
       </div>
       <div class="parte-dois">
@@ -102,31 +163,6 @@
             v-model="newUsers.cpfId"
           />
         </div>
-      </div>
-      <div class="parte-um">
-        <h3>VACINA</h3>
-        <div>
-          <label for="vacina">vacina</label>
-          <input id="vacina" type="text" v-model="newUsers.vacinaId" />
-        </div>
-        <div>
-          <label for="doze">Doze</label>
-          <input id="doze" type="text" v-model="newUsers.dozeId" />
-        </div>
-        <div>
-          <label for="data">Data</label>
-          <input id="data" type="date" v-model="newUsers.dataId" required />
-        </div>
-        <div>
-          <label for="lote">Lote</label>
-          <input id="lote" type="text" v-model="newUsers.loteId" />
-        </div>
-        <div>
-          <label for="validade">Validade</label>
-          <input id="validade" type="date" v-model="newUsers.validadeId" />
-        </div>
-      </div>
-      <div class="parte-dois">
         <h3>Doença</h3>
         <transition name="fade" mode="out-in">
           <b v-if="!doencashow">sim</b>
@@ -159,38 +195,6 @@
             </div>
           </div>
         </transition>
-      </div>
-      <div class="parte-um">
-        <h4><b>SESSÃO D:MEDICAÇÕES DE USO CONTÍNUO</b></h4>
-        <transition name="fade" mode="out-in">
-          <b v-if="!medicamentoshow">sim</b>
-          <b v-if="medicamentoshow">não</b>
-        </transition>
-        <label class="switch">
-          <input
-            type="checkbox"
-            v-on:input="medicamentoshow = !medicamentoshow"
-          />
-          <span class="slider round"></span>
-        </label>
-        <transition name="slide-fade">
-          <div id="medicamento" v-if="!medicamentoshow">
-            <div>
-              <label for="medicamento">Medicamento</label>
-              <input id="data" type="text" v-model="newUsers.medicamentoId" />
-            </div>
-            <div>
-              <label for="doze">Doze</label>
-              <input id="data" type="date" v-model="newUsers.doze2Id" />
-            </div>
-            <div>
-              <label for="horarios">Horarios</label>
-              <input id="data" type="date" v-model="newUsers.horarioId" />
-            </div>
-          </div>
-        </transition>
-      </div>
-      <div class="parte-dois">
         <h4>Óbito</h4>
         <transition name="fade" mode="out-in">
           <b v-if="!obitoshow">sim</b>
@@ -218,7 +222,7 @@
         </transition>
       </div>
       <div class="parte-tres">
-        <button class="vermelhopastel" type="submit" value="AddUser">
+          <button class="vermelhopastel" type="submit" value="AddUser">
           Enviar
         </button>
       </div>
@@ -402,7 +406,9 @@ input {
   font-size: 27px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-auto-columns: 800px;
+  grid-template-rows:  1fr;
+  /*grid-auto-columns: 800px;*/
+  grid-template-areas: "parte-um parte-dois" "parte-tres parte-tres";
   border-radius: 18px;
   color: black;
 }
@@ -424,17 +430,19 @@ input {
   margin-right: 5px;
 }
 .parte-um {
-  /*grid-area: parte-um;*/
+  grid-area: parte-um;
   text-align: left;
   padding: 20px;
 }
 .parte-dois {
-  /*grid-area: parte-dois;*/
+  grid-area: parte-dois;
   text-align: left;
   padding: 20px;
 }
 .parte-tres {
-  /*grid-area: parte-tres;*/
+  grid-area: parte-tres;
+  padding-top: 20px;
+  margin-top: 20px;
   text-align: center;
 }
 .enviado {

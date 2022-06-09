@@ -1,16 +1,25 @@
 <template>
   <div id="app">
+    <!--<Loading v-model:="isLoading" />-->
     <router-view name="usuario"></router-view>
-	<Menu/>
+    <Menu />
     <transition mode="out-in">
       <router-view />
     </transition>
   </div>
 </template>
 <script>
-import Menu from './components/template/Menu.vue'
+import Menu from "./components/template/Menu.vue";
+
 export default {
-  components: { Menu},};
+  components: { Menu },
+  name: "App",
+  data() {
+    return {
+      isLoading: true,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -26,7 +35,7 @@ export default {
 .verdeagua {
   font-size: 45px;
   background-color: #41eb90;
-  border-style:none;
+  border-style: none;
   color: #ecebe3;
   border-radius: 20px;
   margin: 6px;
@@ -37,7 +46,7 @@ export default {
 .azulclaro {
   font-size: 45px;
   background-color: #56d3e4;
-  border-style:none;
+  border-style: none;
   color: #ffffff;
   border-radius: 20px;
   margin: 5px;
@@ -45,5 +54,4 @@ export default {
   margin: 8px;
   padding: 12px;
 }
-
 </style>

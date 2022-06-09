@@ -3,9 +3,9 @@
     <h3>Editar</h3>
     <form @submit.prevent="onUpdateForm" id="editar">
       <h3 id="nomesobrenome">{{ user.nome }} {{ user.sobrenome }}</h3>
-      <hr />
+      <hr/>
         <table>
-      <hr />
+      <hr/>
       <h4 clas="titulo" >Editando</h4>
       <tr>
         <th>Nome da Mãe</th>
@@ -79,7 +79,7 @@
       </tr>
       <br/>
         </table>
-        <button class="verde" @click="confirmou = true">Confirmar</button>
+        <button class="confirmar" @click="confirmou = true">Confirmar</button>
     </form>
     
     
@@ -186,9 +186,9 @@ export default {
   margin-left: 5px;
   width: 86%;
 }
-.verde {
-  font-size: 45px;
-  background-color: #2ba162;
+.confirmar {
+  font-size: 40px;
+  background-color: #5e747f;
   border-style:none;
   color: #ecebe3;
   border-radius: 20px;
@@ -197,5 +197,9 @@ export default {
   margin: 8px;
   padding: 12px;
   text-align: center;
+}
+.confirmar:hover{
+  background-color: #90e0ef;
+  color:black;
 }
 </style>

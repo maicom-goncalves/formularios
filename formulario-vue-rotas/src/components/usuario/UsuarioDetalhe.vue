@@ -78,7 +78,7 @@
         <td>{{ user.horarioId }}</td>
       </tr>
       <br/>
-      <router-link class="editar" :to="{ name: 'editarUsuario', params: { id: $route.params.id } }">
+      <router-link class="editarlink" :to="{ name: 'editarUsuario', params: { id: $route.params.id } }">
         EDITAR
       </router-link>
     </table>
@@ -169,9 +169,9 @@ export default {
   text-align: center;
   padding: 8px;
 }
-.editar {
-  /*font-size: 38px;*/
-  background-color: #942911;
+.editarlink {
+  font-size: 40px;
+  background-color: #5e747f;
   border-style: none;
   color: #ffffff;
   border-radius: 20px;
@@ -182,8 +182,8 @@ export default {
   list-style: none;
   text-decoration: none;
 }
-.editar:hover {
-  background-color: #9d8420;
+.editarlink:hover {
+  background-color: #E98A15;
   color: #fff;
 }
 </style>

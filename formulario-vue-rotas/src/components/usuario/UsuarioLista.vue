@@ -2,6 +2,7 @@
   <div class="usuario-lista">
     <h3>Lista de Moradores</h3>
     <!-- buscando usuarios do banco de dados no firebase firestore-->
+                 
     <li class="lista" v-for="user in users" :key="user['.key']">
       <router-link
         tag="li"
@@ -32,6 +33,7 @@
 
 <script>
 import { db } from "../../firebase";
+
 export default {
   firestore() {
     return {

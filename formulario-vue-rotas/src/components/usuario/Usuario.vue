@@ -33,14 +33,17 @@ export default {
 }
 .vermelhopastel {
   font-size: 45px;
-  background-color: #e01674;
+  background-color: #b10f2e;
   border-style:none;
   color: #ffffff;
-  border-radius: 20px;
-  margin: 6px;
+  border-radius: 14px;
+  margin: 12px;
   cursor: pointer;
-  margin: 8px;
   padding: 12px;
+}
+.vermelhopastel:hover {
+  background-color: #26532b;
+  color: #fff;
 }
 .switch {
   position: relative;
@@ -78,11 +81,11 @@ export default {
 }
 
 input:checked + .slider {
-  background-color: #f32121;
+  background-color: #020402;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #ee5348;
+  box-shadow: 0 0 1px #020402;
   
 }
 
