@@ -73,7 +73,7 @@
         </div>
 
         <div>
-          <h4><b>SESSÃO D:MEDICAÇÕES DE USO CONTÍNUO</b></h4>
+          <h4><b>MEDICAMENTO</b></h4>
           <transition name="fade" mode="out-in">
             <b v-if="!medicamentoshow">sim</b>
             <b v-if="medicamentoshow">não</b>
@@ -85,8 +85,9 @@
             />
             <span class="slider round"></span>
           </label>
-          <transition name="slide-fade">
+          <transition name="slide-fade"> 
             <div id="medicamento" v-if="!medicamentoshow">
+            <h4><b>SESSÃO D:MEDICAÇÕES DE USO CONTÍNUO</b></h4>
               <div>
                 <label for="medicamento">Medicamento</label>
                 <input id="data" type="text" v-model="newUsers.medicamentoId" />
@@ -173,7 +174,7 @@
           <span class="slider round"></span>
         </label>
         <transition name="slide-fade">
-          <div v-if="!doencashow">
+          <div id="doencadiv" v-if="!doencashow">
             <label for="doenca">Doença</label>
             <input
               id="nameId"
@@ -205,7 +206,7 @@
           <span class="slider round"></span>
         </label>
         <transition name="slide-fade">
-          <div v-if="!obitoshow">
+          <div v-if="!obitoshow" id="obitodiv">
             <div>
               <label for="obito">Data Obito</label>
               <input id="data" type="date" v-model="newUsers.obitoId" />
@@ -400,7 +401,7 @@ input {
 }
 #form {
   margin-top: 25px;
-  background: #9ce0e9;
+  background: #d2dddf;
   border: 1px solid #ffeeee;
   font-family: Arial;
   font-size: 27px;
@@ -445,6 +446,35 @@ input {
   margin-top: 20px;
   text-align: center;
 }
+#medicamento{
+  background-color: #24d1b4;
+  padding: 25px 45px;
+  border-radius: 5px;
+  margin: 7px;
+}
+#medicamento input {
+  font-size: 18pt;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  width: 95%;
+}
+/*#medicamento label{
+  width: 98%;
+}*/
+#obitodiv{
+  background-color: #342a21;
+  color: #ffeeee;
+  border-radius: 5px;
+  padding: 25px 45px;
+  margin: 7px;
+}
+#doencadiv{
+  background-color: #d1ac00;
+  border-radius: 5px;
+  padding: 25px 45px;
+  margin: 7px;
+}
+
 .enviado {
   font-size: 45px;
   text-align: center;

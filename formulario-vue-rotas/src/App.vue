@@ -3,7 +3,7 @@
     <!--<Loading v-model:="isLoading" />-->
     <router-view name="usuario"></router-view>
     <Menu />
-    <transition mode="out-in">
+    <transition name="slide-fade" mode="out-in">
       <router-view />
     </transition>
   </div>
@@ -53,5 +53,17 @@ export default {
   cursor: pointer;
   margin: 8px;
   padding: 12px;
+}
+.slide-fade-enter-active {
+  /*transition: all .5s ease;*/
+ transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-leave-active {
+  transition: all .6s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active em versões anteriores a 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>
