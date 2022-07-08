@@ -401,7 +401,7 @@ input {
 }
 #form {
   margin-top: 25px;
-  background: #d2dddf;
+  background: #f9f9f9;
   border: 1px solid #ffeeee;
   font-family: Arial;
   font-size: 27px;

@@ -10,6 +10,14 @@ const firebaseApp = firebase.initializeApp({
   messagingSenderId: "937530099359",
   appId: "1:937530099359:web:03f66a9b330a2c7e1bc4aa"
 });
+firebase.getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+      const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+          unsubscribe();
+          resolve(user);
+      }, reject);
+  })
+};
 
 //db.settings({ timestampsInSnapshots:true })
 export const db = firebaseApp.firestore();

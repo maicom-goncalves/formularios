@@ -32,7 +32,7 @@ export default {
   padding: 0px;
   border: 3px solid #db4c40;
   background-color: #db4c40;
-  box-shadow: 1px 1px #c2928e, 2px 2px #775450, 1px 1px #965049;
+  box-shadow: 1px 1px #c2928e, 0.5px 0.5px #775450, 1px 1px #965049;
   border-radius: 8px;
   overflow: hidden;
   font-size: 23px;
