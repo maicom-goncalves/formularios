@@ -11,6 +11,9 @@
       <router-link to="/cadastro" tag="li" active-class="active" exact>
         CADASTRO
       </router-link>
+      <router-link to="/visitasDiarias" tag="li" active-class="active" exact>
+        VISITAS
+      </router-link>
     </ul>
   </nav>
   </div>

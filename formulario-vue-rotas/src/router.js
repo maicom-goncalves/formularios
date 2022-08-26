@@ -7,7 +7,7 @@ import UsuarioDetalhe from './components/usuario/UsuarioDetalhe'
 import UsuarioLista from './components/usuario/UsuarioLista'
 import UsuarioEditar from './components/usuario/UsuarioEditar'
 import UsuarioCadastro from './components/usuario/UsuarioCadastro'
-
+import VisitasDiarias from './components/usuario/VisitasDiarias'
 Vue.use(Router)
 
 const router = new Router({
@@ -35,6 +35,12 @@ const router = new Router({
     {
       path:'/cadastro',
       component:UsuarioCadastro,
+      props:false
+  }
+  ,
+    {
+      path:'/visitasDiarias',
+      component:VisitasDiarias,
       props:false
   },{
         path:'/usuario',

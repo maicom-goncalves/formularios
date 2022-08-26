@@ -3,9 +3,11 @@ import Router from 'vue-router'
 import Inicio from './components/Inicio'
 import Pagina from './components/pages/Pagina'
 import Menu from './components/template/Menu'
+import Agente from './components/pages/Agente'
 import Visita from './components/pages/Visita'
 import Visitas from './components/pages/Visitas'
-import Lista from './components/pages/Lista'
+import Dia from './components/pages/Dia'
+import Error from './components/pages/Error'
 //import Lista from './components/pages/Lista'
 //import Login from './Login'
 
@@ -29,7 +31,7 @@ const router = new Router({
       path:'/',
       components:{
         default:Inicio,
-        menu:Menu
+        menu:Menu,
       }
   },
   {
@@ -50,12 +52,22 @@ const router = new Router({
     props:false
 },
 {
-  path:'/lista',
-    component:Lista,
+  path:'/dia',
+    component:Dia,
+    props:false
+},
+{
+  path:'/agente',
+    component:Agente,
+    props:false
+},
+{
+  path:'/error',
+    component:Error,
     props:false
 },{
     path:'/*',
-    redirect:'/'
+    redirect:'/error'
   }]
 })
 

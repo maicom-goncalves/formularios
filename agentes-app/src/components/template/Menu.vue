@@ -1,35 +1,17 @@
 <template>
   <div>
     <nav class="menu">
-      <div class="agente">
-        <img src="../../img/agente03.png" alt="img-agente">
-        <h2>Nome Agente:</h2>
-        <span>Micro Area:</span>
-        <br/>
-        <span>Dia:</span>
-      </div>
       <ul>
-        <router-link to="/" tag="li" active-class="active" exact>
-          INÍCIO
-          <img src="../../img/medic5.png" alt="753"/>
-        </router-link>
-        <router-link to="/" tag="li" active-class="active" exact>
-          INÍCIO2
-          <img src="../../img/medic5.png" alt="753"/>
-        </router-link>
         <router-link to="/lista" tag="li" active-class="active" exact>
           USUÁRIO
           <img src="../../img/medicine2.png" alt="user"/>
         </router-link>
         <router-link to="/visitas" tag="li" active-class="active" exact>
-          VISITAS
+          LISTA DE VISITAS
           <img src="../../img/visit2.png" alt="visitas"/>
         </router-link>
         <router-link to="/visita" tag="li" active-class="active" exact>
-          VISITA
-        </router-link>
-        <router-link to="/lista" tag="li" active-class="active" exact>
-          LISTA
+          FICHA DE VISITA
         </router-link>
       </ul>
     </nav>
@@ -56,6 +38,7 @@ export default {};
 .menu li {
   flex: 1;
   box-shadow: 1px 1px #888888;
+ 
 }
 .menu a {
   justify-content: center;
@@ -64,15 +47,15 @@ export default {};
   white-space: nowrap;
 }
 .menu ul :hover {
-  background-color: #3da5d9;
+  background-color: #F05D5E;
   color: #faf0ca;
 }
 .menu .active {
-  background-color: #af2bbf;
+  background-color: #2E86AB;
   color: whitesmoke;
 }
 .menu .active a {
-  color: #da4167;
+  color: #F05D5E;
 }
 .menu a {
   color: #fff;
@@ -96,15 +79,15 @@ export default {};
     flex: 2;
     margin: 10px;
     border-radius: 8px;
-    padding:5%;
-    width: 10%;
-    background-color: #60cee263;
+    padding:6%;
+    width: 12%;
+    background-color: #00ffc5;
   }
   .menu a {
     padding: 15px 20px;
   }
-  .menu img{
+  /*.menu img{
   width: 40%;
-}
+}*/
 }
 </style>
