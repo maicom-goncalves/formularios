@@ -30,9 +30,9 @@ export default {
 .lista {
   list-style: none;
   padding: 0px;
-  border: 3px solid #335C81;
-  background-color: #335C81;
-  box-shadow: 1px 1px #7e6e6c, 0.5px 0.5px #b18f8b, 1px 1px #0896a8;
+  border: 3px solid #006e90;
+  background-color: #006e90;
+  box-shadow: 1px 1px #7e6e6c, 0.5px 0.5px #868281, 1px 1px #0896a8;
   border-radius: 8px;
   overflow: hidden;
   font-size: 17px;
@@ -44,7 +44,7 @@ export default {
   cursor: pointer;
 }
 .lista .item-lista:hover {
-  background-color: #db4c40;
+  background-color: #d7263d;
   color: #13110c;
 }
 .lista .item-lista:nth-child(n + 2) {

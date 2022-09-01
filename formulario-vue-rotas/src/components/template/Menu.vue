@@ -6,13 +6,13 @@
         INÍCIO
       </router-link>
       <router-link to="/usuario" tag="li" active-class="active" exact>
-        USUÁRIO
+        MORADORES
       </router-link>
-      <router-link to="/cadastro" tag="li" active-class="active" exact>
-        CADASTRO
+      <router-link to="/cadastros" tag="li" active-class="active" exact>
+        CADASTROS
       </router-link>
-      <router-link to="/visitasDiarias" tag="li" active-class="active" exact>
-        VISITAS
+      <router-link to="/" tag="li" active-class="active" exact>
+        VISITAS DIARIAS
       </router-link>
     </ul>
   </nav>
@@ -24,7 +24,7 @@ export default {
 
 };
 </script>
-<style scoped>
+<style >
 .menu ul {
     display: flex;    
     background-color: #f1f0ea;

@@ -389,6 +389,39 @@ export default {
         return alert("CPF inserido é invalido");
       }
     },
+    limpaForm () {
+      this.newUsers= [
+        this.nameId= "",
+        this.lastnameId= "",
+        this.generoId= "",
+        this.cpfId= "",
+        this.houseId= "",
+        this.etnosId= "",
+        this.motherId= "",
+        this.residenceId= "",
+        this.cityId= "",
+        this.cardsusId= "",
+        this.dateId= "",
+        this.fatherId= "",
+        this.numbhouseId= "",
+        this.poleId= "",
+        this.vacinaId= "",
+        this.dozeId= "",
+        this.data2Id= "",
+        this.loteId= "",
+        this.validadeId= "",
+        this.doencaId= "",
+        this.dataDiagnosticoId= "",
+        this.situacaoId= "",
+        this.medicamentoId= "",
+        this.doze2Id= "",
+        this.horarioId= "",
+        this.obitoId= "",
+        this.atestadoId= "",
+        this.causaObitoId= "",
+      ]
+      this.enviado = false;
+    },
   },
 };
 </script>

@@ -39,7 +39,7 @@ export default {
 }
 #banner {
   position: fixed;
-  background: #cbd4c2;
+  background: #ecf0e9;
   width: 100%;
   color: #1a1919;
   border-radius: 10px 10px 0px 0px;
@@ -47,7 +47,7 @@ export default {
 }
 .home {
   font-size: 12px;
-  background-color: #d81e5c7c;
+  background-color: #ff5e5b;
   border-style: none;
   color: #ecebe3;
   border-radius: 12px;
@@ -58,7 +58,7 @@ export default {
 }
 .voltar {
   font-size: 12px;
-  background-color: #d81e5c7c;
+  background-color: #ff5e5b;
   border-style: none;
   color: #ecebe3;
   border-radius: 12px;
@@ -79,7 +79,7 @@ export default {
     height: 60px;
     border-radius: 0px 0px 10px 10px;
     /*background: #297045;*/
-    background: #d81e5c7c;
+    background: #ff5e5b;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;

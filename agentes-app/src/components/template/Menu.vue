@@ -38,7 +38,7 @@ export default {};
 .menu li {
   flex: 1;
   box-shadow: 1px 1px #888888;
- 
+
 }
 .menu a {
   justify-content: center;
@@ -46,12 +46,9 @@ export default {};
   font-weight: 600;
   white-space: nowrap;
 }
-.menu ul :hover {
-  background-color: #F05D5E;
-  color: #faf0ca;
-}
+
 .menu .active {
-  background-color: #2E86AB;
+  background-color: #006e90;
   color: whitesmoke;
 }
 .menu .active a {
@@ -81,7 +78,7 @@ export default {};
     border-radius: 8px;
     padding:6%;
     width: 12%;
-    background-color: #00ffc5;
+    background-color: #87f1ff;
   }
   .menu a {
     padding: 15px 20px;

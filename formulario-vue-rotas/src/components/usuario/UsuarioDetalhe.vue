@@ -20,7 +20,7 @@
         <td>{{ user.Etnia }}</td>
         <td>{{ user.aldeia }}</td>
         <td>{{ user.polobase }}</td>
-        <td>{{ user.data }}</td>
+        <td>{{printDia(user.data)}}</td>
       </tr>
       <br />
       <tr>
@@ -49,9 +49,9 @@
       <tr>
         <td>{{ user.vacina }}</td>
         <td>{{ user.doze }}</td>
-        <td>{{ user.data2 }}</td>
+        <td>{{printDia(user.data2)}}</td>
         <td>{{ user.lote }}</td>
-        <td>{{ user.validade }}</td>
+        <td>{{printDia(user.validade)}}</td>
       </tr>
       <h4 clas="titulo" >Doenças</h4>
         <tr>
@@ -62,8 +62,8 @@
       </tr>
       <tr>
         <td>{{ user.doencaId }}</td>
-        <td>{{ user.dataDiagnosticoId }}</td>
-        <td>{{ user.data2 }}</td>
+        <td>{{printDia(user.dataDiagnosticoId)}}</td>
+        <td>{{printDia(user.data2)}}</td>
         <td>{{ user.situacaoId }}</td>
       </tr>
       <h4 clas="titulo" >Medicações de uso continuo</h4>
@@ -74,7 +74,7 @@
       </tr>
       <tr>
         <td>{{ user.medicamentoId }}</td>
-        <td>{{ user.doze2Id }}</td>
+        <td>{{printDia(user.doze2Id)}}</td>
         <td>{{ user.horarioId }}</td>
       </tr>
       <br/>
@@ -97,6 +97,9 @@ export default {
     };
   },
   methods: {
+    printDia: function (data) {
+      return new Date(data).toLocaleDateString();
+    },
     onUpdateForm(event) {
       event.preventDefault();
       db.collection("users")

@@ -6,15 +6,19 @@
     <span>Micro Area:</span>
     <br />
     <span>Dia:{{ date }}</span>
-    <div class="turno">
-      <label class="opcoes-radio" required>
+    <div class="turno"> 
+      <span>
+        <label class="opcoes-radio" required>
         manhã
-        <input type="radio"  value="manhã" />
       </label>
-      <label class="opcoes-radio" required>
-        tarde
+      <input type="radio"  value="manhã" />
+      </span>
+      <span>
+        <label class="opcoes-radio" required>
         <input type="radio"  value="tarde" />
+        tarde
       </label>
+      </span>
     </div>
   </div>
 </template>
@@ -48,7 +52,7 @@ export default {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 5px;
+  margin: 7px;
   padding: 3%;
 }
 .turno label {
@@ -58,8 +62,8 @@ export default {
 }
 .turno input {
   border-radius: 50%;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border: 3px solid rgb(26, 25, 25);
   margin-right: 5px;
 }
