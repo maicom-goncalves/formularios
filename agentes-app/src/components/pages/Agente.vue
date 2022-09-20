@@ -6,20 +6,7 @@
     <span>Micro Area:</span>
     <br />
     <span>Dia:{{ date }}</span>
-    <div class="turno"> 
-      <span>
-        <label class="opcoes-radio" required>
-        manhã
-      </label>
-      <input type="radio"  value="manhã" />
-      </span>
-      <span>
-        <label class="opcoes-radio" required>
-        <input type="radio"  value="tarde" />
-        tarde
-      </label>
-      </span>
-    </div>
+    
   </div>
 </template>
 

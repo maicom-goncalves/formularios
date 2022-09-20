@@ -2,7 +2,7 @@
   <div class="usuario-detalhe">
     <h2>Dados do morador</h2>
     <table id="customers" @submit.prevent="onUpdateForm" class="dados-usuario">
-      <h3 id="nomesobrenome">{{ user.nome }} {{ user.sobrenome }}</h3>
+      <h3 id="nomesobrenome">{{ morador.nome }} {{ morador.sobrenome }}</h3>
       <hr />
       <h4 clas="titulo" >Informações Pessoais</h4>
       <tr>
@@ -15,12 +15,12 @@
        
       </tr>
       <tr>
-        <td>{{ user.Mae }}</td>
-        <td>{{ user.pai }}</td>
-        <td>{{ user.Etnia }}</td>
-        <td>{{ user.aldeia }}</td>
-        <td>{{ user.polobase }}</td>
-        <td>{{printDia(user.data)}}</td>
+        <td>{{ morador.Mae }}</td>
+        <td>{{ morador.pai }}</td>
+        <td>{{ morador.Etnia }}</td>
+        <td>{{ morador.aldeia }}</td>
+        <td>{{ morador.polobase }}</td>
+        <td>{{printDia(morador.data)}}</td>
       </tr>
       <br />
       <tr>
@@ -31,11 +31,11 @@
         <th>Sexo</th>
       </tr>
       <tr>
-        <td>{{ user.cartaosus }}</td>
-        <td>{{ user.cpf }}</td>
-        <td>{{user.cidade}}</td>
-        <td>{{user.casa}}</td>
-        <td>{{user.genero}}</td>
+        <td>{{ morador.cartaosus }}</td>
+        <td>{{ morador.cpf }}</td>
+        <td>{{morador.cidade}}</td>
+        <td>{{morador.casa}}</td>
+        <td>{{morador.genero}}</td>
       </tr>
       <br />
       <h4 clas="titulo" >Vacinas</h4 >
@@ -47,11 +47,11 @@
         <th>Validade</th>
       </tr>
       <tr>
-        <td>{{ user.vacina }}</td>
-        <td>{{ user.doze }}</td>
-        <td>{{printDia(user.data2)}}</td>
-        <td>{{ user.lote }}</td>
-        <td>{{printDia(user.validade)}}</td>
+        <td>{{ morador.vacina }}</td>
+        <td>{{ morador.doze }}</td>
+        <td>{{printDia(morador.data2)}}</td>
+        <td>{{ morador.lote }}</td>
+        <td>{{printDia(morador.validade)}}</td>
       </tr>
       <h4 clas="titulo" >Doenças</h4>
         <tr>
@@ -61,10 +61,10 @@
         <th>Situação</th>
       </tr>
       <tr>
-        <td>{{ user.doencaId }}</td>
-        <td>{{printDia(user.dataDiagnosticoId)}}</td>
-        <td>{{printDia(user.data2)}}</td>
-        <td>{{ user.situacaoId }}</td>
+        <td>{{ morador.doencaId }}</td>
+        <td>{{printDia(morador.dataDiagnosticoId)}}</td>
+        <td>{{printDia(morador.data2)}}</td>
+        <td>{{ morador.situacaoId }}</td>
       </tr>
       <h4 clas="titulo" >Medicações de uso continuo</h4>
        <tr>
@@ -73,9 +73,9 @@
         <th>Horarios</th>
       </tr>
       <tr>
-        <td>{{ user.medicamentoId }}</td>
-        <td>{{printDia(user.doze2Id)}}</td>
-        <td>{{ user.horarioId }}</td>
+        <td>{{ morador.medicamentoId }}</td>
+        <td>{{printDia(morador.doze2Id)}}</td>
+        <td>{{ morador.horarioId }}</td>
       </tr>
       <br/>
       <router-link class="editarlink" :to="{ name: 'editarUsuario', params: { id: $route.params.id } }">
@@ -93,7 +93,7 @@ export default {
 
   firestore() {
     return {
-      user: db.collection("user"),
+      morador: db.collection("morador"),
     };
   },
   methods: {
@@ -102,11 +102,11 @@ export default {
     },
     onUpdateForm(event) {
       event.preventDefault();
-      db.collection("users")
+      db.collection("morador")
         .doc(this.$route.params.id)
-        .update(this.user)
+        .update(this.morador)
         .then(() => {
-          console.log("User successfully updated!");
+          console.log("morador successfully updated!");
           this.$router.push("/list");
         })
         .catch((error) => {
@@ -119,15 +119,15 @@ export default {
   },
   data() {
     return {
-      user: {},
+      morador: {},
     };
   },
   created() {
-    let dbRef = db.collection("users").doc(this.$route.params.id);
+    let dbRef = db.collection("morador").doc(this.$route.params.id);
     dbRef
       .get()
       .then((doc) => {
-        this.user = doc.data();
+        this.morador = doc.data();
       })
       .catch((error) => {
         console.log(error);

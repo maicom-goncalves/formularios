@@ -1,14 +1,18 @@
 <template>
-  <div>
-    <h1>Visitas dos agentes</h1>
-    <Calendario />
+  <div class="usuario">
+    <router-view />
+    <button class="voltar" @click="irParaInicio">VOLTAR</button>
   </div>
 </template>
 
 <script>
-import Calendario from './Calendario.vue';
 export default {
-    components:{Calendario}
+  methods: {
+    irParaInicio() {
+      //voltar a pagina incial
+      this.$router.push({ name: "inicio" });
+    },
+  }
 }
 </script>
 

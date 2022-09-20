@@ -5,6 +5,13 @@
       <form id="form" v-on:submit.prevent="addUser" v-if="!enviado">
         <div class="um">
           <div>
+            <label for="area">Micro Area:</label>
+            <input
+              type="text"
+              required
+            />
+          </div>
+          <div>
             <label for="nameAgente">Nome</label>
             <input
               id="nameAgente"
@@ -87,11 +94,11 @@
 <script>
 import { db } from "../../firebase";
 export default {
-  //(enviado = false )
   data() {
     return {
       enviado: false,
       agentes: [],
+      user:{},
       newUsers: {
         nameAgente: "",
         lastnameAgente: "",
@@ -107,7 +114,7 @@ export default {
   },
   firestore() {
     return {
-      users: db.collection("agentes"),
+      user: db.collection("agentes"),
     };
   },
   methods: {
@@ -117,7 +124,6 @@ export default {
     },
     
     limpaForm () {
-      //for (newUser in this.newUsers) this.newUsers[newUser] = "";
       this.newUsers= [
         this.nameAgente= "",
         this.lastnameAgente= "",

@@ -244,7 +244,7 @@ export default {
   data() {
     return {
       enviado: false,
-      users: [],
+      morador: [],
       newUsers: {
         nameId: "",
         lastnameId: "",
@@ -320,7 +320,7 @@ export default {
   },
   firestore() {
     return {
-      users: db.collection("users"),
+      users: db.collection("morador"),
     };
   },
   methods: {
@@ -355,7 +355,7 @@ export default {
       }
       var strCPF = TestaCPF(`${this.newUsers.cpfId}`);
       if (strCPF == true) {
-        db.collection("users").add({
+        db.collection("morador").add({
           nome: `${this.newUsers.nameId}`,
           sobrenome: `${this.newUsers.lastnameId}`,
           genero: `${this.newUsers.generoId}`,

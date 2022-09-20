@@ -8,8 +8,12 @@ import UsuarioLista from './components/usuario/UsuarioLista'
 import UsuarioEditar from './components/usuario/UsuarioEditar'
 import UsuarioCadastro from './components/usuario/UsuarioCadastro'
 import VisitasDiarias from './components/usuario/VisitasDiarias'
+import ListaDeVisitas from './components/usuario/ListaDeVisitas'
 import CadastroAgente from './components/usuario/CadastroAgente'
 import Cadastros from './components/usuario/Cadastros'
+import Calendario from './components/usuario/Calendario'
+import Visita from './components/usuario/Visita'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -43,6 +47,12 @@ const router = new Router({
     path: '/cadastros',
     component: Cadastros,
     props: false
+    
+  },
+  {
+    path: '/calendario',
+    component: Calendario,
+    props: false
   },
   {
     path: '/cadastroAgente',
@@ -50,10 +60,6 @@ const router = new Router({
     props: false
   },
   {
-    path: '/visitasDiarias',
-    component: VisitasDiarias,
-    props: false
-  }, {
     path: '/usuario',
     component: Usuario,
     props: true,
@@ -70,6 +76,21 @@ const router = new Router({
         path: ':id/editar', component: UsuarioEditar, props: true,
         name: 'editarUsuario'
       },
+    ]
+  },
+  {
+    path: '/visitas',
+    component: VisitasDiarias,
+    props: true,
+    children: [
+      { path: '', component: ListaDeVisitas },
+      {
+        path: ':id', component: Visita, name: 'visita', props: true,
+
+        beforeEnter: (to, from, next) => {
+          next()
+        }
+      }
     ]
   }, {
     path: '/*',

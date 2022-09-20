@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router';
 
 import VueFirestore from 'vue-firestore';
+import './registerServiceWorker'
 /*firebase.auth().onAuthStateChanged(async user => {
   if (!app) {
     if (user) {

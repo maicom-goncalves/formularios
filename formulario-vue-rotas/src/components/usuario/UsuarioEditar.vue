@@ -2,7 +2,7 @@
   <div class="usuario-editar">
     <h3>Editar</h3>
     <form @submit.prevent="onUpdateForm" id="editar">
-      <h3 id="nomesobrenome">{{ user.nome }} {{ user.sobrenome }}</h3>
+      <h3 id="nomesobrenome">{{ morador.nome }} {{ morador.sobrenome }}</h3>
       <hr/>
         <table>
       <hr/>
@@ -17,12 +17,12 @@
        
       </tr>
       <tr>
-        <td><input type="text" v-model="user.Mae"/></td>
-        <td><input type="text" v-model="user.pai"/></td>
-        <td><input type="text" v-model="user.Etnia"/></td>
-        <td><input type="text" v-model="user.aldeia"/></td>
-        <td><input type="text" v-model="user.polobase"/></td>
-        <td><input type="date" v-model="user.data"/></td>
+        <td><input type="text" v-model="morador.Mae"/></td>
+        <td><input type="text" v-model="morador.pai"/></td>
+        <td><input type="text" v-model="morador.Etnia"/></td>
+        <td><input type="text" v-model="morador.aldeia"/></td>
+        <td><input type="text" v-model="morador.polobase"/></td>
+        <td><input type="date" v-model="morador.data"/></td>
       </tr>
       <br />
       <tr>
@@ -33,11 +33,11 @@
         <th>Sexo</th>
       </tr>
       <tr>
-        <td><input type="number" v-model="user.cartaosus"/></td>
-        <td><input type="text" v-model="user.cpf"/></td>
-        <td><input type="text" v-model="user.cidade"/></td>
-        <td><input type="text" v-model="user.casa"/></td>
-        <td><input type="text" v-model="user.genero"/></td>
+        <td><input type="number" v-model="morador.cartaosus"/></td>
+        <td><input type="text" v-model="morador.cpf"/></td>
+        <td><input type="text" v-model="morador.cidade"/></td>
+        <td><input type="text" v-model="morador.casa"/></td>
+        <td><input type="text" v-model="morador.genero"/></td>
       </tr>
       <br />
       <h4 clas="titulo" >Vacinas</h4 >
@@ -49,11 +49,11 @@
         <th>Validade</th>
       </tr>
       <tr>
-        <td><input type="text" v-model="user.vacina"/></td>
-        <td><input type="text" v-model="user.doze"/></td>
-        <td><input type="date" v-model="user.data2"/></td>
-        <td><input type="text" v-model="user.lote"/></td>
-        <td><input type="text" v-model="user.validade"/></td>
+        <td><input type="text" v-model="morador.vacina"/></td>
+        <td><input type="text" v-model="morador.doze"/></td>
+        <td><input type="date" v-model="morador.data2"/></td>
+        <td><input type="text" v-model="morador.lote"/></td>
+        <td><input type="text" v-model="morador.validade"/></td>
       </tr>
       <h4 clas="titulo" >Doenças</h4>
         <tr>
@@ -62,9 +62,9 @@
         <th>Situação</th>
       </tr>
       <tr>
-        <td><input type="text" v-model="user.doencaId"/></td>
-        <td><input type="date" v-model="user.dataDiagnosticoId"/></td>
-        <td><input type="text" v-model="user.situacaoId"/></td>
+        <td><input type="text" v-model="morador.doencaId"/></td>
+        <td><input type="date" v-model="morador.dataDiagnosticoId"/></td>
+        <td><input type="text" v-model="morador.situacaoId"/></td>
       </tr>
       <h4 clas="titulo" >Medicações de uso continuo</h4>
        <tr>
@@ -73,8 +73,8 @@
         <th>Horarios</th>
       </tr>
       <tr>
-        <td><input type="text" v-model="user.medicamentoId"/></td>
-        <td><input type="date" v-model="user.doze2Id"/></td>
+        <td><input type="text" v-model="morador.medicamentoId"/></td>
+        <td><input type="date" v-model="morador.doze2Id"/></td>
         <td><input type="date" v-model="horarioId"/></td>
       </tr>
       <br/>
@@ -92,21 +92,21 @@ export default {
   props: ["id"],
   firestore() {
     return {
-      user: db.collection("user"),
+      morador: db.collection("morador"),
     };
   },
   data() {
     return {
-      user: {},
+      morador: {},
       confirmou: false,
     };
   },
   methods: {
     onUpdateForm(event) {
       event.preventDefault();
-      db.collection("users")
+      db.collection("morador")
         .doc(this.id)
-        .update(this.user)
+        .update(this.morador)
         .then(() => {
           console.log("Usuario Modificado com sucesso");
           this.$router.push("/list");
@@ -128,11 +128,11 @@ export default {
     }
   },
   created() {
-    let dbRef = db.collection("users").doc(this.$route.params.id);
+    let dbRef = db.collection("morador").doc(this.$route.params.id);
     dbRef
       .get()
       .then((doc) => {
-        this.user = doc.data();
+        this.morador = doc.data();
       })
       .catch((error) => {
         console.log(error);

@@ -2,13 +2,13 @@
   <div>
     <h1>Visitas </h1>
     <h3>Lista de Visitas</h3>
-    <li class="lista" v-for="user in users" :key="user['.key']">
+    <li class="lista" v-for="morador in moradors" :key="morador['.key']">
       <router-link
         tag="li"
-        :to="{ name: 'visita', params: { id: user['.key'] } }"
+        :to="{ name: 'agenda', params: { id: morador['.key'] } }"
         class="item-lista"
       >
-        {{ user.nome }} {{ user.sobrenome }}
+        {{ morador.nome }} {{ morador.sobrenome }}
       </router-link>
     </li>  
   </div>
@@ -20,7 +20,7 @@ import { db } from "../../firebase";
 export default {
   firestore() {
     return {
-      users: db.collection("users"),
+      moradors: db.collection("morador").orderBy("nome", "asc")
     };
   },
 };
