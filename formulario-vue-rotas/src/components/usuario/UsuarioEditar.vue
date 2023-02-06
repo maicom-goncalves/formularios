@@ -20,7 +20,7 @@
         <td><input type="text" v-model="morador.Mae"/></td>
         <td><input type="text" v-model="morador.pai"/></td>
         <td><input type="text" v-model="morador.Etnia"/></td>
-        <td><input type="text" v-model="morador.aldeia"/></td>
+        <td>{{morador.aldeia}}</td>
         <td><input type="text" v-model="morador.polobase"/></td>
         <td><input type="date" v-model="morador.data"/></td>
       </tr>
@@ -75,7 +75,7 @@
       <tr>
         <td><input type="text" v-model="morador.medicamentoId"/></td>
         <td><input type="date" v-model="morador.doze2Id"/></td>
-        <td><input type="date" v-model="horarioId"/></td>
+        <td><input type="date" v-model="morador.horarioId"/></td>
       </tr>
       <br/>
         </table>
@@ -92,7 +92,7 @@ export default {
   props: ["id"],
   firestore() {
     return {
-      morador: db.collection("morador"),
+      morador: db.collection("morador").doc(this.id).collection("moradores").doc(this.id3),
     };
   },
   data() {
@@ -128,7 +128,8 @@ export default {
     }
   },
   created() {
-    let dbRef = db.collection("morador").doc(this.$route.params.id);
+    let dbRef = db.collection("morador").doc(this.id).collection("moradores").doc(this.$route.params.id3)
+    //db.collection("morador").doc(this.$route.params.id);
     dbRef
       .get()
       .then((doc) => {

@@ -11,8 +11,11 @@
       <router-link to="/cadastros" tag="li" active-class="active" exact>
         CADASTROS
       </router-link>
-      <router-link to="/visitas" tag="li" active-class="active" exact>
+      <router-link to="/pagina" tag="li" active-class="active" exact>
         VISITAS DIARIAS
+      </router-link>
+      <router-link to="/paginaVisita" tag="li" active-class="active" exact>
+        VISITAS DIARIAS2
       </router-link>
     </ul>
   </nav>
@@ -28,6 +31,8 @@ export default {
 .menu ul {
     display: flex;    
     background-color: #f1f0ea;
+    border: 1px solid #dfded8;
+    box-shadow: 1px 2px #020402a6;
     list-style: none;
     padding: 3px;
     border-radius: 10px;

@@ -1,5 +1,6 @@
 <template>
   <div class="inicio">
+    <Menu />
     <div id="inicio">
       <header id="cabecalho">
         <img src="../img/logo01.png"/>
@@ -14,9 +15,12 @@
 </template>
 
 <script>
-import "../fonts/fontes.css"
-//import logo from "../img/logo01.png"
-export default {};
+import "../fonts/fontes.css";
+import Menu from "./template/Menu";
+
+export default {
+  components: { Menu },
+};
 </script>
 
 <style scoped>

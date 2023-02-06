@@ -1,22 +1,39 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import firebase from 'firebase';
+
+import Login from './Login'
 import Inicio from './components/Inicio'
 import Menu from './components/template/Menu'
 import Usuario from './components/usuario/Usuario'
 import UsuarioDetalhe from './components/usuario/UsuarioDetalhe'
-import UsuarioLista from './components/usuario/UsuarioLista'
+import UsuarioLista from './components/moradores/UsuarioLista'
 import UsuarioEditar from './components/usuario/UsuarioEditar'
-import UsuarioCadastro from './components/usuario/UsuarioCadastro'
-import VisitasDiarias from './components/usuario/VisitasDiarias'
-import ListaDeVisitas from './components/usuario/ListaDeVisitas'
-import CadastroAgente from './components/usuario/CadastroAgente'
-import Cadastros from './components/usuario/Cadastros'
-import Calendario from './components/usuario/Calendario'
-import Visita from './components/usuario/Visita'
+import UsuarioCadastro from './components/cadastros/UsuarioCadastro'
+//import VisitasDiarias from './components/visitas/VisitasDiarias'
+import paginaVisita from './components/visitas/paginaVisita'
+import listaAldeia from './components/moradores/listaAldeia'
+import listaCasas from './components/moradores/listaCasas'
+import ListaDeVisitas from './components/visitas/ListaDeVisitas'
+import visitasAldeia from './components/visitas/visitasAldeia'
+import PaginaCadastro from './components/cadastros/Pagina'
+import Cadastrar from './components/cadastros/Cadastrar'
+import CadastroAgente from './components/cadastros/CadastroAgente'
+import CadastroArea from './components/cadastros/CadastroArea'
+import cadastrarCasa from './components/cadastros/cadastrarCasa'
+import Cadastros from './components/cadastros/Cadastros'
+import Pagina from './components/pages/Pagina'
+import Aldeias from './components/pages/Aldeias'
+import Casa from './components/pages/Casa'
+import Morador from './components/pages/Morador'
+import Visita from './components/visitas/Visita'
+import Teste from './components/usuario/Teste'
+import Dia from './components/usuario/Dia'
 
 Vue.use(Router)
 
 const router = new Router({
+  
   mode: 'history',
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
@@ -31,27 +48,28 @@ const router = new Router({
   },
   routes: [{
     name: 'inicio',
-    path: '/',
-    //component: Inicio
+    path: '/inicio',
     components: {
       default: Inicio,
       menu: Menu
+    },
+    meta: {
+      requiresAuth: true
     }
-  },
-  {
-    path: '/cadastro',
-    component: UsuarioCadastro,
-    props: false
   },
   {
     path: '/cadastros',
     component: Cadastros,
     props: false
-    
   },
   {
-    path: '/calendario',
-    component: Calendario,
+    path: '/cadastroArea',
+    component: CadastroArea,
+    props: false
+  },
+  {
+    path: '/teste',
+    component: Teste,
     props: false
   },
   {
@@ -60,48 +78,112 @@ const router = new Router({
     props: false
   },
   {
+    path: '/dia',
+    component: Dia,
+    props: false
+  },
+  {
     path: '/usuario',
     component: Usuario,
     props: true,
     children: [
-      { path: '', component: UsuarioLista },
+      { path: '', component: listaAldeia },
       {
-        path: ':id', component: UsuarioDetalhe, name: 'usuario', props: true,
-
+        path: ':id', component: listaCasas, name: 'usuario', props: true,
         beforeEnter: (to, from, next) => {
           next()
         }
       },
       {
-        path: ':id/editar', component: UsuarioEditar, props: true,
+        path: ':id/:id2', component: UsuarioLista, name: 'UsuarioLista', props: true
+      },
+      {
+        path: ':id/:id2/:id3', component: UsuarioDetalhe, name: 'usuarioDetalhe', props: true
+      },
+      {
+        path: ':id/:id2/:id3/editar', component: UsuarioEditar, props: true,
         name: 'editarUsuario'
       },
     ]
   },
   {
-    path: '/visitas',
-    component: VisitasDiarias,
+    path: '/cadastro',
+    component: PaginaCadastro,
     props: true,
     children: [
-      { path: '', component: ListaDeVisitas },
+      { path: '', component: Cadastrar },
       {
-        path: ':id', component: Visita, name: 'visita', props: true,
+        path: ':id/:id2', component: cadastrarCasa, name: 'cadastro', props: true,
+        beforeEnter: (to, from, next) => { next() }
+      },
+      {
+        path: ':id/:id2', component: UsuarioCadastro, name: 'UsuarioCadastro', props: true
+      },
+    ]
+  },
+  {
+    path: '/pagina',
+    component: Pagina,
+    props: true,
+    children: [
+      { path: '', component: Aldeias },
+      {
+        path: ':id', component: Casa, name: 'pagina', props: true,
+        beforeEnter: (to, from, next) => {
+          next()
+        }
+      },
+      {
+        path: ':id/morador', component: Morador, props: true,
+        name: 'morador'
+      },
+    ]
+  },
+  {
+    path: '/paginaVisita',
+    component: paginaVisita,
+    props: true,
+    children: [
+      { path: '', component: visitasAldeia },
+      {
+        path: ':id', component:ListaDeVisitas , name: 'paginaVisita', props: true,
 
         beforeEnter: (to, from, next) => {
           next()
         }
-      }
+      },
+      {
+        path: ':id/id2/visita', component: Visita, props: true,
+        name: 'visita'
+      },
     ]
-  }, {
-    path: '/*',
-    redirect: '/'
-  }]
+  },
+  {
+    path: '*',
+    redirect: '/login'
+  },
+  {
+    path: '/',
+    redirect: '/login'
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+]
 })
 
 router.beforeEach((to, from, next) => {
+  const currentUser = firebase.auth().currentUser;
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-  next()
-  /*if(to.path !== './usuario'){
+  if (requiresAuth && !currentUser) next('login');
+  else if (!requiresAuth && currentUser) next();
+  else next();
+
+ /* next()
+  if(to.path !== './usuario'){
     next('./usuario')
   }else{
     next()

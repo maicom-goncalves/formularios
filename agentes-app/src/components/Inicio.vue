@@ -1,18 +1,35 @@
 <template>
   <div id="inicio">
-    <header id="inicial">
-      <h1>DISTRITO SANITÁRIO ESPECIAL DE INDÍGENA MATO GROSSO DO SUL</h1>
-    </header>
     <Agente/>
     <Menu />
+    <div id="footer">
+      <button class="voltar" @click="sair">
+       <img class="iconbotao" src="../img/sair03.png" alt="sair" />
+      </button>
+      <button class="home" @click="irParaInicio">
+        <img class="iconbotao" src="../img/home04.png" alt="voltar" />
+      </button>
+    </div>
   </div>
 </template>
-
 <script>
 import Menu from "./template/Menu.vue";
 import Agente from "./pages/Agente.vue";
+
+import firebase from 'firebase'
 export default {
   components: { Menu, Agente },
+   methods: {
+    irParaInicio() {
+      //voltar a pagina incial
+      this.$router.push({ name: "inicio" });
+    },
+    sair: function() {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('login')
+      })
+    }
+  },
 };
 </script>
 
@@ -23,7 +40,6 @@ export default {
   text-align: justify;
   margin:2px;
 }
-
 #inicial h1 {
   font-size: 140%;
 }
@@ -38,7 +54,6 @@ export default {
   width: 0;
   height: 0;
 }
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -92,5 +107,27 @@ input:checked + .slider:before {
 /* .slide-fade-leave-active em versões anteriores a 2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
+}
+.home {
+  font-size: 12px;
+  background-color: #ff5e5b;
+  border-style: none;
+  color: #ecebe3;
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  text-align: right;
+  margin-right: 0%;
+}
+.voltar {
+  font-size: 12px;
+  background-color: #ff5e5b;
+  border-style: none;
+  color: #ecebe3;
+  border-radius: 12px;
+  padding: 2px;
+  cursor: pointer;
+  margin-left: 4%;
+  text-align: left;
 }
 </style>

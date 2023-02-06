@@ -2,16 +2,8 @@
   <div>
     <nav class="menu">
       <ul>
-        <router-link to="/lista" tag="li" active-class="active" exact>
-          USUÁRIO
-          <img src="../../img/medicine2.png" alt="user"/>
-        </router-link>
-        <router-link to="/visitas" tag="li" active-class="active" exact>
+        <router-link to="/pagina" tag="li" active-class="active" exact>
           LISTA DE VISITAS
-          <img src="../../img/visit2.png" alt="visitas"/>
-        </router-link>
-        <router-link to="/visita" tag="li" active-class="active" exact>
-          FICHA DE VISITA
         </router-link>
       </ul>
     </nav>
@@ -75,10 +67,10 @@ export default {};
   .menu li {
     flex: 2;
     margin: 10px;
-    border-radius: 8px;
-    padding:6%;
-    width: 12%;
-    background-color: #87f1ff;
+    padding:12%;
+    width: 8%;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #56c2ec , #57a0bde0,#5897af9f);
   }
   .menu a {
     padding: 15px 20px;

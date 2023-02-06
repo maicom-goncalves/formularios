@@ -89,11 +89,12 @@
 import { db } from "../../firebase";
 import "../../fonts/fontes.css";
 export default {
-  props: ["id"],
+  props: ["id","id3"],
 
   firestore() {
     return {
-      morador: db.collection("morador"),
+      //morador: db.collection("morador"),
+      moradores: db.collection("morador").doc(this.id).collection("moradores").doc(this.id3)
     };
   },
   methods: {
@@ -123,7 +124,7 @@ export default {
     };
   },
   created() {
-    let dbRef = db.collection("morador").doc(this.$route.params.id);
+    let dbRef = db.collection("morador").doc(this.id).collection("moradores").doc(this.id3);
     dbRef
       .get()
       .then((doc) => {
@@ -132,6 +133,8 @@ export default {
       .catch((error) => {
         console.log(error);
       });
+
+      console.log(this.id3);
   },
 };
 </script>

@@ -55,6 +55,7 @@ export default {
   margin-right: 5px;
 }
 #icoagente{
+  margin-top:7%;
   width: 40%;
   text-align: justify;
 }

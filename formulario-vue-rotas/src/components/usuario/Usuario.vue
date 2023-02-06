@@ -1,40 +1,44 @@
 <template>
-  <div class="usuario">
-    <router-view />
-    <button class="voltar" @click="irParaInicio">VOLTAR</button>
+  <div>
+    <Menu />
+    <div class="usuario">
+      <router-view />
+    </div>
   </div>
 </template>
-
 <script>
-
+import Menu from "../template/Menu.vue";
 export default {
-  methods: {
-    irParaInicio() {
-      //voltar a pagina incial
-      this.$router.push({ name: "inicio" });
-    },
-  }
+  components: { Menu }
 };
 </script>
 
 <style>
- .voltar{
+.usuario {
+  margin-top: 25px;
+  background: #f1f0eabb;
+  border: 1px solid #dfded8;
+  box-shadow: 1px 2px #020402a6;
+  border-radius: 18px;
+  padding: 4%;
+}
+.voltar {
   font-size: 40px;
-  background-color:#cf66e9;
-  border-style:none;
+  background-color: #cf66e9;
+  border-style: none;
   color: #ecebe3;
   border-radius: 15px;
   padding: 12px;
   cursor: pointer;
 }
 .voltar:hover {
-  background-color: #48A9A6;
+  background-color: #48a9a6;
   color: #fff;
 }
 .vermelhopastel {
   font-size: 45px;
   background-color: #b10f2e;
-  border-style:none;
+  border-style: none;
   color: #ffffff;
   border-radius: 14px;
   margin: 12px;
@@ -65,8 +69,8 @@ export default {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 .slider:before {
   position: absolute;
@@ -76,8 +80,8 @@ export default {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -86,7 +90,6 @@ input:checked + .slider {
 
 input:focus + .slider {
   box-shadow: 0 0 1px #020402;
-  
 }
 
 input:checked + .slider:before {
@@ -96,23 +99,20 @@ input:checked + .slider:before {
 }
 .slider.round {
   border-radius: 44px;
-  
 }
 .slider.round:before {
   border-radius: 50%;
-  
 }
 .slide-fade-enter-active {
   /*transition: all .5s ease;*/
- transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-leave-active {
-  transition: all .6s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.6s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active em versões anteriores a 2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
 }
-
 </style>
