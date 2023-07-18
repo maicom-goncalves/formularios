@@ -95,7 +95,6 @@ export default {
 
   firestore() {
     return {
-      //morador: db.collection("morador"),
       moradores: db.collection("morador").doc(this.id).collection("moradores").doc(this.id3)
     };
   },
@@ -109,7 +108,6 @@ export default {
         .doc(this.$route.params.id)
         .update(this.morador)
         .then(() => {
-          //console.log("morador successfully updated!");
           this.$router.push("/list");
         })
         .catch((error) => {
@@ -135,8 +133,6 @@ export default {
       .catch((error) => {
         console.log(error);
       });
-
-      console.log(this.id3);
   },
 };
 </script>

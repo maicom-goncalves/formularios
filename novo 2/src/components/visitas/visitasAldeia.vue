@@ -1,68 +1,54 @@
 <template>
+<div>
   <div class="VisitaAldeia">
     <h3>Aldeias</h3>
-    <li class="aldeias">
-      <router-link tag="li" :to="{ name: 'listaDeVisitas', params: { id: 'Água Clara' } }" class="item-aldeias">
-        Água Clara
-      </router-link>
-    </li>
-    <li class="aldeias">
-      <router-link tag="li" :to="{ name: 'listaDeVisitas', params: { id: 'Bananal' } }" class="item-aldeias">
-        Bananal
-      </router-link>
-    </li>
-    <li class="aldeias">
-      <router-link tag="li" :to="{ name: 'listaDeVisitas', params: { id: 'Morrinho' } }" class="item-aldeias">
-        Morrinho
-      </router-link>
-    </li>
-    <li class="aldeias">
-      <router-link tag="li" :to="{ name: 'listaDeVisitas', params: { id: 'Ipegue' } }" class="item-aldeias">
-        Ipegue
-      </router-link>
-    </li>
+    <button class="aldeias" @click="mudarAldeia('Água Clara')">Água Clara</button>
+    <button class="aldeias" @click="mudarAldeia('Bananal')">Bananal</button>
+    <button class="aldeias" @click="mudarAldeia('Morrinho')">Morrinho</button>
+    <button class="aldeias" @click="mudarAldeia('Ipegue')">Ipegue</button>
+    <button class="aldeias" @click="mudarAldeia('Buritizinho')">Buritizinho</button>
 </div>
+<ListaDeVisitas />
+</div>
+  
 </template>
 <script>
-
+import ListaDeVisitas from './ListaDeVisitas.vue';
+import EventBus from '../../EventBus'
 export default {
-  computed: {
-    aldeias() {
-      return this.$store.state.aldeia;
-    }
-  }
+  props: ["nomeAldeia"],
+  components: {
+    ListaDeVisitas,
+  },
+  methods: {
+   mudarAldeia(variavel) {
+      EventBus.$emit("aldeia",(this.nomeAldeia = variavel));
+    },
+  },
 };
 </script>
 
 <style scoped>
-.VisitaAldeia{
-    display: flex;
-    flex-direction: column;
+.VisitaAldeia {
+  display: flex;
 }
-.aldeias{
-  list-style: none;
-  background-color: #00E8FC;
-  padding: 1%;
-  border-radius: 4px;
+.aldeias {
+  padding: 2%;
+  border: 1px solid #d34b3e;
+  border-radius: 8px;
   overflow: hidden;
-  font-size: 83%;
-  margin-bottom: 4px;
-  width: 80%;
-  height: auto;
-}
-
-.aldeias.item-aldeias{
-  padding: 25% 30%;
+  font-size: 23px;
+  margin-bottom:1%;
+  margin-left: 1%;
   cursor: pointer;
-  
 }
-
-.aldeias.item-aldeias:hover {
+.aldeias:hover {
   background-color: #db4c40;
   color: #faf0ca;
 }
-
-.aldeias.item-aldeias:nth-child(n + 2) {
-  border-top: 1px solid #faf0ca;
+.aldeias:focus {
+  border: 1px solid #d34b3e;
+  background-color: #db4c40;
+  color: #faf0ca;
 }
 </style>

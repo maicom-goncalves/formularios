@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router';
 import firebase from 'firebase';
-import store from './store/store'
 import VueCalendar from 'vue-calendar';
 
 import VueFirestore from 'vue-firestore';
@@ -29,7 +28,6 @@ firebase.auth().onAuthStateChanged(() => {
   if (!app) {
     app = new Vue({
       router:router,
-      store,
       render: h => h(App)
     }).$mount('#app');
   }

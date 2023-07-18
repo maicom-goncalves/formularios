@@ -1,66 +1,59 @@
 <template>
-<div>
-  <div class="topo">
-     <img src="./img/logo01.png"/> 
-     <h2>DISTRITO SANITÁRIO ESPECIAL DE INDÍGENA MATO GROSSO DO SUL</h2>
+  <div>
+    <div class="topo">
+      <img src="./img/logo01.png" />
+      <h2>DISTRITO SANITÁRIO ESPECIAL DE INDÍGENA MATO GROSSO DO SUL</h2>
       <h3><b>SAÚDE INDÍGENA</b></h3>
     </div>
-  <div class="login">
-    <input
-      type="text"
-      placeholder="Email"
-      v-model="email"
-    >
-    <br />
-    <input
-      type="password"
-      placeholder="Senha"
-      v-model="senha"
-    >
-    <br>
-    <div class="btn-login">
-      <button @click="login">
-        <b>ENTRAR</b> 
-      </button>
+    <div class="login">
+      <input type="text" placeholder="Email" v-model="email" />
+      <br />
+      <input type="password" placeholder="Senha" v-model="senha" />
+      <br />
+      <div class="btn-login">
+        <button @click="login">
+          <b>ENTRAR</b>
+        </button>
+      </div>
+    </div>
+    <div class="errado" v-show="errado">
+      <p><b>Senha ou Email que foram fornecidas são incorretas.</b></p>
     </div>
   </div>
-  <div class="errado" v-show="errado">
-    <p><b>Senha ou Email que foram fornecidas são incorretas.</b></p>
-  </div>
-</div>
-  
 </template>
 
 <script>
-import firebase from 'firebase';
+import firebase from "firebase";
 export default {
   name: "login",
-  data () {
+  data() {
     return {
-      email: '',
-      senha: '',
-      errado:false
+      email: "",
+      senha: "",
+      errado: false,
     };
   },
-   methods: {
-      login: function() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.senha).then(
+  methods: {
+    login: function () {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.senha)
+        .then(
           (user) => {
-            this.$router.replace('inicio')
+            this.$router.replace("inicio");
           },
           (err) => {
             console.log(err);
-            this.errado=true;
+            this.errado = true;
             this.limpaForm();
           }
         );
-      },
-      limpaForm(){
-        this.email= '',
-        this.senha= ''
-      }
-    }
-  }
+    },
+    limpaForm() {
+      (this.email = ""), (this.senha = "");
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -75,10 +68,10 @@ export default {
   padding: 4% 6%;
   text-align: center;
 }
-.topo{
+.topo {
   text-align: center;
 }
-img{
+img {
   width: 15%;
   height: 10%;
 }
@@ -86,7 +79,7 @@ input {
   margin: 10px 2px;
   width: 75%;
   padding: 25px;
-  font-size:larger;
+  font-size: larger;
   border-radius: 5px;
 }
 
@@ -114,37 +107,37 @@ p a {
   text-decoration: underline;
   cursor: pointer;
 }
-.errado{
+.errado {
   color: red;
   text-align: center;
 }
 @media screen and (max-width: 600px) {
-    .login {
-      margin-top: 1% 20%;
-      box-shadow: #000000dc 3px;
-      text-align: center;
-    }
-    input {
-      margin:2% 3%;
-      width: 85%;
-      height: 20%;
-      padding: 15px;
-      border-radius: 5px;
-      box-shadow: 1px 1px #8888882a;
-      font-size: x-large;
-    }
-    button {
-      font-family: "Roboto", sans-serif;
-      border-radius: 5px;
-      background: #cf66e9;
-      color:white;
-      border: 1px;
-      padding: 15px;
-      width: 88%;
-      height: 20%;
-      margin:2% 3%;
-      box-shadow: 1px 2px #3d3d3d;
-      font-size: x-large;
-    }
+  .login {
+    margin-top: 1% 20%;
+    box-shadow: #000000dc 3px;
+    text-align: center;
+  }
+  input {
+    margin: 2% 3%;
+    width: 85%;
+    height: 20%;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 1px 1px #8888882a;
+    font-size: x-large;
+  }
+  button {
+    font-family: "Roboto", sans-serif;
+    border-radius: 5px;
+    background: #cf66e9;
+    color: white;
+    border: 1px;
+    padding: 15px;
+    width: 88%;
+    height: 20%;
+    margin: 2% 3%;
+    box-shadow: 1px 2px #3d3d3d;
+    font-size: x-large;
+  }
 }
 </style>

@@ -5,11 +5,12 @@
       <div class="entradas">
         <label for="nprontuario">
           <p>N° do prontuario</p>
-          <input type="number" v-model="newUsers.nprontuario" />
+          <span>
+            {{ this.nprontuario }}
+          </span>
         </label>
-
         <p><b>Agente</b></p>
-        <select class="opcoes" name="agente" v-model="newUsers.agente">
+        <select class="opcoes" name="agente" v-model="newUsers.agente" required>
           <option
             :id="agentes.sobrenome"
             v-for="agentes in agentes"
@@ -20,7 +21,7 @@
         </select>
         <br />
         <p><b>Morador</b></p>
-        <select class="opcoes" name="morador" v-model="newUsers.morador">
+        <select class="opcoes" name="morador" v-model="newUsers.morador" required>
           <option
             :id="morador.sobrenome"
             v-for="morador in moradores"
@@ -35,7 +36,7 @@
             <input type="radio" value="manhã" v-model="newUsers.turno" />
             manhã
           </label>
-          <br/>
+          <br />
           <label class="opcoes-radio" required>
             <input type="radio" value="tarde" v-model="newUsers.turno" />
             tarde
@@ -183,12 +184,13 @@ export default {
       newUsers: {
         agente: "",
         morador: "",
+        aldeia: "",
         dia: "",
         mvisitas: "",
         hdoenca: "",
         atividadeFisica: "não",
         tabagismoSim: "não",
-        digestivo: "",
+        digestivo: "não",
         peso: "",
         turno: "",
         nprontuario: "",
@@ -203,24 +205,24 @@ export default {
       },
     };
   },
-  async created() {
+  created() {
+    this.nprontuario = Math.floor((Math.random() * 99999 + 10000) * 10);
     this.buscarAgentes();
-
     let db = firebase.firestore();
     this.moradores = [];
     let numeros = [];
     console.log(docRef);
     //receber documento do firebase
-    var docRef = await db
+    var docRef = db
       .collection("morador")
       .doc(this.$route.params.id)
       .collection("moradores")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          this.moradores.push((numeros = (doc.id, " => ", doc.data())));
-          console.log(this.moradores + numeros);
-          console.log(doc.id, " => ", doc.data());
+          //this.moradores.push((numeros = (doc.id, " => ", doc.data())));
+          this.moradores.push(doc.data());
+          console.log( numeros);
         });
       });
   },
@@ -255,6 +257,7 @@ export default {
         .doc(this.$route.params.id)
         .collection("visitas")
         .add({
+          aldeia: `${this.$route.params.id}`,
           nome: `${this.newUsers.morador}`,
           agente: `${this.newUsers.agente}`,
           dataAtual: `${this.date}`,
@@ -280,12 +283,12 @@ export default {
         (this.agente = ""),
         (this.motivo = ""),
         (this.hdoenca = ""),
-        (this.atividadeFisica = ""),
-        (this.tabagismoSim = ""),
-        (this.digestivo = ""),
+        (this.atividadeFisica = "não"),
+        (this.tabagismoSim = "não"),
+        (this.digestivo = "não"),
         (this.peso = ""),
-        (this.nprontuario = ""),
-        (this.observacoes = ""),
+        (this.nprontuario = Math.floor((Math.random() * 99999 + 10000) * 10)),
+        (this.observacoes = "sem observações"),
       ];
       this.enviado = false;
     },
@@ -368,8 +371,8 @@ export default {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    -ms-user-select:none;      
-    user-select:none;  
+    -ms-user-select: none;
+    user-select: none;
     position: relative;
   }
   option {

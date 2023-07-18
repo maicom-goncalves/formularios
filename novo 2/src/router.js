@@ -24,9 +24,8 @@ import Pagina from './components/pages/Pagina'
 import Aldeias from './components/pages/Aldeias'
 import Casa from './components/pages/Casa'
 import Morador from './components/pages/Morador'
-import Teste from './components/usuario/Teste'
 import Dia from './components/usuario/Dia'
-import listaDeVisitas from './components/visitas/ListaDeVisitas'
+//import listaDeVisitas from './components/visitas/ListaDeVisitas'
 import Visita from './components/visitas/Visita'
 
 Vue.use(Router)
@@ -64,11 +63,6 @@ const router = new Router({
   {
     path: '/cadastroArea',
     component: CadastroArea,
-    props: false
-  },
-  {
-    path: '/teste',
-    component: Teste,
     props: false
   },
   {
@@ -145,15 +139,11 @@ const router = new Router({
     children: [
       { path: '', component: visitasAldeia },
       {
-        path: ':id', component: listaDeVisitas , name: 'listaDeVisitas', props: true,
+        path: ':id/:id2', component: Visita , name: 'visita', props: true,
         beforeEnter: (to, from, next) => {
           next()
         }
-      },
-      {
-        path: ':id/visita', component: Visita, props: true,
-        name: 'visita'
-      },
+      }
     ]
   },
   {

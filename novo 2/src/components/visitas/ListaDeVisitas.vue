@@ -1,82 +1,127 @@
 <template>
-  <div >
+  <div>
     <h1>Visitas dos agentes</h1>
+    <h4>{{ this.nomeAldeia }}</h4>
     <div id="visitasDiarias">
-      <div class="visita" v-for="visita in visitas" :key="visita['.key']">
-        <router-link tag="table"
-              :to="{ name: 'visita', params: { id2: visita['.key']} }"
-              class="item-visita" >
-          <tr>
-            <th>Data da visita</th>
-            <th>Nome</th>
-          </tr>
-          <tr>
-            <td>{{ visita.dataAtual }} </td>
-           <td>{{ visita.nome }} {{ visita.sobrenome }}</td>
-          </tr>
+      <table class="visita">
+        <tr class="item-visita">
+          <th>Nome</th>
+          <th>Data da visita</th>
+          <th>Agente</th>
+        </tr>
+        <router-link
+          tag="tr"
+          v-for="visita in visitas"
+          :key="visita['.key']"
+          :to="{ name: 'visita', params: { id: visita.aldeia, id2: visita.id } }"
+          class="item-visita"
+        >
+          <td>{{ visita.nome }} {{ visita.sobrenome }}</td>
+          <td>{{ visita.dataAtual }}</td>
+          <td>{{ visita.agente }}</td>
         </router-link>
-      </div>
+      </table>
     </div>
+    <!-- <vue-calendar :events="events" />-->
   </div>
 </template>
   <script>
-
 import { db } from "../../firebase";
-
+//import VueCalendar from "vue-calendar";
+import EventBus from "../../EventBus";
 export default {
-  props: ["id"],
+  components: {
+    //VueCalendar,
+  },
   data() {
     return {
-      visitas:[],
+      visitas: [],
+      //events:[]
     };
   },
-  firestore() {
-    return {
-      visitas: db.collection("Visita").doc(this.id).collection("visitas").orderBy("dataAtual", "asc")
-    };
+  created() {
+    EventBus.$on("aldeia", (nomeAldeia) => {
+      this.nomeAldeia = nomeAldeia;
+      this.visitas = [];
+      //receber documento do firebase
+      var docRef = db
+        .collection("Visita")
+        .doc(nomeAldeia)
+        .collection("visitas")
+        .orderBy("dataAtual", "asc")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            const item = {
+              id: doc.id,
+              ...doc.data(),
+            };
+            this.visitas.push(item);
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      console.log(docRef);
+    });
   },
+   beforeDestroy() {
+    EventBus.$off('aldeia',this.nomeAldeia);
+  }
 };
 </script>
-  
-  <style scoped>
+<style scoped>
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 17pt;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+tr:hover {
+  background-color: coral;
+}
+
+/*
 .visitasDiarias {
   display: flex;
   align-content: space-between;
   width: 100%;
-  flex-direction: row;
-  align-items: stretch;
 }
 th,
 td {
-  padding: 10px;
+  padding: 2%;
   text-align: left;
-  border-bottom: 1px solid #ddd;
-  /*width: 40%;*/
+  border-bottom: 1px solid #534646;
+  background-color: #8981fa;
+  flex-flow: row nowrap ;
+  vertical-align: none;
 }
 .visita {
-    list-style: none;
-    padding: 10px;
-    border: 2px solid #db4c40;
-    border-radius: 8px;
-    overflow: hidden;
-    font-size: 23px;
-    margin: 7px;
-    width: 18%;
-    height: 22%;
-    display: inline-block;
-  }
+  padding: 2%;
+  border: 2px solid #db4c40;
+  border-radius: 5px;
+  font-size: 23px;
+  margin: 1%;
+  width: 100%;
+  justify-content: space-around ;
+}
 
-  .visita .item-visita {
-    padding: 1px 1px;
-    cursor: pointer;
-    width: 97%;
-    height: 96%;
-  }
-  .visita .item-visita:hover {
-    background-color: #db4c40;
-    color: #faf0ca;
-  }
-  .visita .item-visita:nth-child(n + 2) {
-    border-top: 1px solid #faf0ca;
-  }
+.visita .item-visita {
+  cursor: pointer;
+  background-color: #76f5a6;
+
+}
+.visita .item-visita:hover {
+  background-color: #db4c40;
+  color: #faf0ca;
+}
+*/
 </style>

@@ -3,86 +3,83 @@
     <h3>Editar</h3>
     <form @submit.prevent="onUpdateForm" id="editar">
       <h3 id="nomesobrenome">{{ morador.nome }} {{ morador.sobrenome }}</h3>
-      <hr/>
-        <table>
-      <hr/>
-      <h4 clas="titulo" >Editando</h4>
-      <tr>
-        <th>Nome da Mãe</th>
-        <th>Nome do Pai</th>
-        <th>Etnia</th>
-        <th>Aldeia</th>
-        <th>Polo base</th>
-        <th>Data de Nascimento</th>
-       
-      </tr>
-      <tr>
-        <td><input type="text" v-model="morador.Mae"/></td>
-        <td><input type="text" v-model="morador.pai"/></td>
-        <td><input type="text" v-model="morador.Etnia"/></td>
-        <td>{{morador.aldeia}}</td>
-        <td><input type="text" v-model="morador.polobase"/></td>
-        <td><input type="date" v-model="morador.data"/></td>
-      </tr>
-      <br />
-      <tr>
-        <th>Cartão do SUS</th>
-        <th>CPF</th>
-        <th>Município</th>
-        <th>Numero da casa</th>
-        <th>Sexo</th>
-      </tr>
-      <tr>
-        <td><input type="number" v-model="morador.cartaosus"/></td>
-        <td><input type="text" v-model="morador.cpf"/></td>
-        <td><input type="text" v-model="morador.cidade"/></td>
-        <td><input type="text" v-model="morador.casa"/></td>
-        <td><input type="text" v-model="morador.genero"/></td>
-      </tr>
-      <br />
-      <h4 clas="titulo" >Vacinas</h4 >
-      <tr>
-        <th>Nome da Vacina</th>
-        <th>Doze</th>
-        <th>Data</th>
-        <th>Lote</th>
-        <th>Validade</th>
-      </tr>
-      <tr>
-        <td><input type="text" v-model="morador.vacina"/></td>
-        <td><input type="text" v-model="morador.doze"/></td>
-        <td><input type="date" v-model="morador.data2"/></td>
-        <td><input type="text" v-model="morador.lote"/></td>
-        <td><input type="text" v-model="morador.validade"/></td>
-      </tr>
-      <h4 clas="titulo" >Doenças</h4>
+      <hr />
+      <table>
+        <hr />
+        <h4 clas="titulo">Editando</h4>
         <tr>
-        <th>ID</th>
-        <th>Data do Diagnostico</th>
-        <th>Situação</th>
-      </tr>
-      <tr>
-        <td><input type="text" v-model="morador.doencaId"/></td>
-        <td><input type="date" v-model="morador.dataDiagnosticoId"/></td>
-        <td><input type="text" v-model="morador.situacaoId"/></td>
-      </tr>
-      <h4 clas="titulo" >Medicações de uso continuo</h4>
-       <tr>
-        <th>Medicamento</th>
-        <th>Doze</th>
-        <th>Horarios</th>
-      </tr>
-      <tr>
-        <td><input type="text" v-model="morador.medicamentoId"/></td>
-        <td><input type="date" v-model="morador.doze2Id"/></td>
-        <td><input type="date" v-model="morador.horarioId"/></td>
-      </tr>
-      <br/>
-        </table>
-        <button class="confirmar" @click="confirmou = true">Confirmar</button>
+          <th>Nome da Mãe</th>
+          <th>Nome do Pai</th>
+          <th>Etnia</th>
+          <th>Aldeia</th>
+          <th>Polo base</th>
+          <th>Data de Nascimento</th>
+        </tr>
+        <tr>
+          <td><input type="text" v-model="morador.Mae" /></td>
+          <td><input type="text" v-model="morador.pai" /></td>
+          <td><input type="text" v-model="morador.Etnia" /></td>
+          <td>{{ morador.aldeia }}</td>
+          <td><input type="text" v-model="morador.polobase" /></td>
+          <td><input type="date" v-model="morador.data" /></td>
+        </tr>
+        <br />
+        <tr>
+          <th>Cartão do SUS</th>
+          <th>CPF</th>
+          <th>Município</th>
+          <th>Numero da casa</th>
+          <th>Sexo</th>
+        </tr>
+        <tr>
+          <td><input type="number" v-model="morador.cartaosus" /></td>
+          <td><input type="text" v-model="morador.cpf" /></td>
+          <td><input type="text" v-model="morador.cidade" /></td>
+          <td><input type="text" v-model="morador.casa" /></td>
+          <td><input type="text" v-model="morador.genero" /></td>
+        </tr>
+        <br />
+        <h4 clas="titulo">Vacinas</h4>
+        <tr>
+          <th>Nome da Vacina</th>
+          <th>Doze</th>
+          <th>Data</th>
+          <th>Lote</th>
+          <th>Validade</th>
+        </tr>
+        <tr>
+          <td><input type="text" v-model="morador.vacina" /></td>
+          <td><input type="text" v-model="morador.doze" /></td>
+          <td><input type="date" v-model="morador.data2" /></td>
+          <td><input type="text" v-model="morador.lote" /></td>
+          <td><input type="date" v-model="morador.validade" /></td>
+        </tr>
+        <h4 clas="titulo">Doenças</h4>
+        <tr>
+          <th>ID</th>
+          <th>Data do Diagnostico</th>
+          <th>Situação</th>
+        </tr>
+        <tr>
+          <td><input type="text" v-model="morador.doencaId" /></td>
+          <td><input type="date" v-model="morador.dataDiagnosticoId" /></td>
+          <td><input type="text" v-model="morador.situacaoId" /></td>
+        </tr>
+        <h4 clas="titulo">Medicações de uso continuo</h4>
+        <tr>
+          <th>Medicamento</th>
+          <th>Doze</th>
+          <th>Horarios</th>
+        </tr>
+        <tr>
+          <td><input type="text" v-model="morador.medicamentoId" /></td>
+          <td><input type="date" v-model="morador.doze2Id" /></td>
+          <td><input type="date" v-model="morador.horarioId" /></td>
+        </tr>
+        <br />
+      </table>
+      <button class="confirmar" @click="confirmou = true">Confirmar</button>
     </form>
-    
-    
   </div>
 </template>
 
@@ -92,7 +89,11 @@ export default {
   props: ["id"],
   firestore() {
     return {
-      morador: db.collection("morador").doc(this.id).collection("moradores").doc(this.id3),
+      morador: db
+        .collection("morador")
+        .doc(this.id)
+        .collection("moradores")
+        .doc(this.id3),
     };
   },
   data() {
@@ -111,7 +112,7 @@ export default {
         .update(this.morador)
         .then(() => {
           console.log("Usuario Modificado com sucesso");
-         // this.$router.push("/list");
+          this.$router.push("/usuario");
         })
         .catch((error) => {
           console.log(error);
@@ -130,7 +131,11 @@ export default {
     }
   },
   created() {
-    let dbRef = db.collection("morador").doc(this.$route.params.id).collection("moradores").doc(this.$route.params.id3)
+    let dbRef = db
+      .collection("morador")
+      .doc(this.$route.params.id)
+      .collection("moradores")
+      .doc(this.$route.params.id3);
     dbRef
       .get()
       .then((doc) => {
@@ -144,17 +149,19 @@ export default {
 </script>
 
 <style scoped>
-#nomesobrenome{
-  font-size: 39px ;
-  color:#115f37;
+#nomesobrenome {
+  font-size: 39px;
+  color: #115f37;
 }
 #rodape {
   margin-top: 1000px;
 }
-.usuario-detalhe{
-  text-align:justify;
+.usuario-detalhe {
+  text-align: justify;
 }
-.titulo {font-size: 38;}
+.titulo {
+  font-size: 38;
+}
 #editar {
   font-family: "Hind Madurai", sans-serif;
   margin-top: 25px;
@@ -163,7 +170,9 @@ export default {
   padding: 20px;
   margin: 5px;
 }
-#editar td{font-size: 30px;}
+#editar td {
+  font-size: 30px;
+}
 #editar tr:nth-child(even) {
   background-color: #f1f0ea;
 }
@@ -191,7 +200,7 @@ export default {
 .confirmar {
   font-size: 40px;
   background-color: #5e747f;
-  border-style:none;
+  border-style: none;
   color: #ecebe3;
   border-radius: 20px;
   margin: 6px;
@@ -200,8 +209,8 @@ export default {
   padding: 12px;
   text-align: center;
 }
-.confirmar:hover{
+.confirmar:hover {
   background-color: #90e0ef;
-  color:black;
+  color: black;
 }
 </style>

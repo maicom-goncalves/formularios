@@ -4,7 +4,7 @@
     <li class="lista" v-for="morador in moradores" :key="morador['.key']">
       <router-link tag="li" :to="{ name: 'usuarioDetalhe',
        params: { id3: morador['.key']} }" class="item-lista">
-       <b> {{ morador.nome }} {{ morador.sobrenome }} </b> 
+       <b> {{ morador.nome }} {{ morador.sobrenome}} </b> 
       </router-link>
     </li>
   </div>
@@ -26,7 +26,7 @@ export default {
     return {
       moradores: db.collection("morador").doc(this.id).collection("moradores").where("casa","==",this.id2)
     };
-  },
+  }
 };
 </script>
 

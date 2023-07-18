@@ -24,7 +24,6 @@ var authService = {
       return !this.user.isAnonymous
     }
   },
-
   setUser (user) {
     this.user = user
   },
@@ -42,7 +41,6 @@ var authService = {
     })
   }
 }
-
 firebase.auth().onAuthStateChanged(user => {
   authService.setUser(user)
 })
