@@ -37,7 +37,7 @@ export default {
   border: 1px solid #d34b3e;
   border-radius: 8px;
   overflow: hidden;
-  font-size: 23px;
+  font-size: 2vh;
   margin-bottom:1%;
   margin-left: 1%;
   cursor: pointer;

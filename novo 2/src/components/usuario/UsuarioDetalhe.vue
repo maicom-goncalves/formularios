@@ -80,6 +80,7 @@
         <td>{{ morador.horarioId }}</td>
       </tr>
       <br/>
+      <br/>
       <router-link class="editarlink" :to="{ name: 'editarUsuario', params: { id: $route.params.id } }">
         EDITAR
       </router-link>
@@ -148,13 +149,14 @@ export default {
 .titulo {font-size: 38;}
 #customers {
   font-family: "Hind Madurai", sans-serif;
-  margin-top: 25px;
+  margin-top: 3%;
+  margin-bottom: 4%;
   border-radius: 18px;
   color: black;
   padding: 20px;
   margin: 5px;
 }
-#customers td{font-size: 30px;}
+#customers td{font-size: 15pt;}
 #customers tr:nth-child(even) {
   background-color: #f1f0ea;
 }
@@ -166,7 +168,7 @@ export default {
   background-color: #04aa6d;
   color: white;
   font-family: "Hind Madurai", sans-serif;
-  font-size: 37px;
+  font-size: 25pt;
   margin-top: 5px;
   margin-left: 10px;
   margin-right: 10px;
@@ -179,9 +181,9 @@ export default {
   border-style: none;
   color: #ffffff;
   border-radius: 20px;
-  margin: 5px;
+  margin: 3%;
   cursor: pointer;
-  margin: 20px;
+  margin:4%;
   padding: 12px;
   list-style: none;
   text-decoration: none;

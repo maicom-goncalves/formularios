@@ -41,7 +41,7 @@ export default {
   background-color: #f1f0ea;
   font-family: 'Righteous', cursive;
   cursor: pointer;
-  font-size: 33px;
+  font-size: 3vh;
   border-style: none;
   text-align: center;
 }
@@ -55,11 +55,11 @@ export default {
     border: 1px solid #dfded8;
     box-shadow: 1px 2px #020402a6;
     list-style: none;
-    padding: 3px;
+    padding:0;
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
-    font-size: 33px;
+    font-size: 3vh;
     text-align: center;
     font-family: 'Righteous', cursive;
 }

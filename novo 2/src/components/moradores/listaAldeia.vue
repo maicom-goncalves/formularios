@@ -21,6 +21,11 @@
         Ipegue
       </router-link>
     </li>
+    <li class="lista">
+      <router-link tag="li" :to="{ name: 'usuario', params: { id: 'Buritizinho' } }" class="item-lista">
+        Buritizinho
+      </router-link>
+    </li>
   </div>
 </template>
 

@@ -22,7 +22,8 @@
   </div>
 </template>
 
-<script>
+<script scoped>
+//import "../fonts/fontes.css"
 </script>
 
 <style scoped>
@@ -33,6 +34,7 @@
   flex-direction: column;
   text-align: center;
   align-items: stretch;
+  /*font-family: 'Righteous', sans-serif;*/
 }
 .aldeiaB {
   background-color: #ff5e5b;
@@ -60,5 +62,6 @@
   margin-bottom: 6%;
   font-weight: bold;
   color: antiquewhite;
+  font-family:  'Righteous', sans-serif;
 }
 </style>

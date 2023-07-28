@@ -134,7 +134,7 @@ input {
   width: 98%;
 }
 #formularioId {
-  margin-top: 25px;
+  margin-top: 2%;
   background: #f9f9f9;
   border: 1px solid #dfded8;
   box-shadow: 1px 2px #020402a6;

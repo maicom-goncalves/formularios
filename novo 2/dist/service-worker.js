@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.88bbbea24917cdfcad5694569535e7d9.js"
+  "/precache-manifest.17bb88d266c6cab453b86af884dc8045.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "agentes-app"});

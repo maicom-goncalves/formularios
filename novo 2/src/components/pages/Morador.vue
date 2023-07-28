@@ -21,10 +21,7 @@ export default {
     },
     firestore() {
         return {
-        morador: db.collection("dia")
-        /*moradors: db.collection('dia').doc(this.$route.params.id).get().then(querySnapshot => {
-            querySnapshot.forEach(collection => {})
-        })*/          
+        morador: db.collection("dia")        
         };
     },
     methods: {

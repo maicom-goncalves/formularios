@@ -1,17 +1,16 @@
 <template>
   <div>
     <Menu />
-    <router-view />
-   
+    <transition name="slide-fade" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 <script>
 import Menu from "../template/Menu.vue";
-//import EventBus from "../../EventBus"
-//import firebase from "firebase";
+
 export default {
-  //props: ["testando"],
-  components: { Menu }
+  components: { Menu },
 };
 </script>
 <style>

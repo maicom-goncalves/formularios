@@ -170,9 +170,10 @@
   </div>
 </template>
   
-  <script>
+<script>
 import firebase from "firebase/app";
 import "firebase/firestore";
+import "../fonts/fontes.css"
 export default {
   props: ["id"],
   data() {
@@ -319,7 +320,7 @@ export default {
   .newUsers form {
     background: #058fd9a2;
     border: 1px solid #3f84e5;
-    font-family: Arial;
+    font-family: 'Righteous', sans-serif;
     font-size: 20px;
     margin: 0px;
     width: 97%;
@@ -372,7 +373,7 @@ export default {
     -webkit-appearance: none;
     -moz-appearance: none;
     -ms-user-select: none;
-    user-select: none;
+    user-select:  selectpicker;
     position: relative;
   }
   option {

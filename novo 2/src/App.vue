@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <!--<Loading v-model:="isLoading" />-->
+    <!--<Loading v-model:="isLoading" />
       <router-view name="usuario"></router-view>
       <transition name="slide-fade" mode="out-in">
-        <router-view />
+       
       </transition>
+      -->
+       <router-view />
   </div>
 </template>
 <script>

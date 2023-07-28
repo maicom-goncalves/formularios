@@ -1,20 +1,20 @@
 <template>
-<div>
-  <Menu />
-  <div class="usuario">
-    <router-view />
+  <div>
+    <Menu />
+    <div class="usuario">
+      <transition name="slide-fade" mode="out-in">
+        <router-view />
+      </transition>
+    </div>
   </div>
-</div>
-  
 </template>
 
 <script>
-import Menu from '../template/Menu'
+import Menu from "../template/Menu";
 export default {
-   components:{Menu},
-}
+  components: { Menu },
+};
 </script>
 
 <style>
-
 </style>

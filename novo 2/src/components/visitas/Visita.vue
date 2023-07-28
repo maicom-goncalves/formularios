@@ -75,7 +75,7 @@ export default {
   background-color: #c0eb808c;
   color: #1a1a1a;
   font-family: "Hind Madurai", sans-serif;
-  font-size: 27px;
+  font-size:3vh;
   margin-top: 1%;
   margin-left: 2%;
   margin-right: 2%;
@@ -91,17 +91,17 @@ export default {
 .zero {
   grid-area: zero;
   text-align: left;
-  padding: 10px;
+  padding: 1%;
   background-color: aliceblue;
 }
 .um {
   grid-area: um;
   text-align: left;
-  padding: 10px;
+  padding: 1%;
 }
 .dois {
   grid-area: dois;
   text-align: right;
-  padding: 10px;
+  padding: 1%;
 }
 </style>

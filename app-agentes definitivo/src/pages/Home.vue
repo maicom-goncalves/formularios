@@ -1,15 +1,14 @@
 <template>
   <div>
-      AGENTE LOGADO  {{ user }} <br>
     <q-space />
    <Aldeia />
     <div>
       <q-btn
         class="flex flex-center q-px-lg q-py-sm q-mb-md"
-        size="md"
-        label="Sair"
+        size="lg"
+        label="SAIR"
         @click="logout"
-        color="primary"
+        color="secondary"
       />
     </div>
   </div>

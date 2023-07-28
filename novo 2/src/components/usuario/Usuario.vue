@@ -2,7 +2,9 @@
   <div>
     <Menu />
     <div class="usuario">
-      <router-view />
+      <transition name="slide-fade" mode="out-in">
+       <router-view />
+      </transition>
     </div>
   </div>
 </template>
@@ -15,12 +17,12 @@ export default {
 
 <style>
 .usuario {
-  margin-top: 25px;
+  margin-top: 2%;
   background: #f9f9f9fd;
   border: 1px solid #dfded8;
   box-shadow: 1px 2px #020402a6;
   border-radius: 18px;
-  padding: 4%;
+  padding: 2%;
 }
 .enviarForm{
   font-size: 100%;

@@ -22,6 +22,10 @@
       <router-link tag="li" :to="{ name: 'cadastro', params: { id: 'Ipegue' } }" class="item-lista">
         Ipegue
       </router-link>
+      <li class="lista">
+      <router-link tag="li" :to="{ name: 'cadastro', params: { id: 'Buritizinho' } }" class="item-lista">
+        Buritizinho
+      </router-link>
     </li>
   </div>
   </div>

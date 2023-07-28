@@ -431,9 +431,9 @@ input {
   width: 98%;
 }
 #form {
-  margin-top: 25px;
+  margin-top: 2%;
   font-family: Arial;
-  font-size: 27px;
+  font-size: 18pt;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;

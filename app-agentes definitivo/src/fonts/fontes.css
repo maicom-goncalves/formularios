@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Didact Gothic', sans-serif;
+    font-style: bold;
+    font-weight: 300;
+    font-display: swap;
+    src: local('Righteous-Regular'), url(/src/fonts/Righteous-Regular.ttf) format('ttf');
+  }
+  @font-face {
+    font-family: 'Didact Gothic', sans-serif;
+    font-style: bold;
+    font-weight: 500;
+    font-display: swap;
+    src: local('AbrilFatface-Regular'), url(/src/fonts/AbrilFatface-Regular.ttf) format('ttf');
+  }
+  @font-face {
+    font-family: 'Didact Gothic', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Anton-Regular'), url(/src/fonts/Anton-Regular.ttf) format('ttf');
+  }
+  @font-face {
+    font-family: 'Didact Gothic', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('HindMadurai-Regular'), url(/src/fonts/HindMadurai-Regular.ttf) format('ttf');
+  }
