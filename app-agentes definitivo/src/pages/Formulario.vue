@@ -21,7 +21,12 @@
         </select>
         <br />
         <p><b>Morador</b></p>
-        <select class="opcoes" name="morador" v-model="newUsers.morador" required>
+        <select
+          class="opcoes"
+          name="morador"
+          v-model="newUsers.morador"
+          required
+        >
           <option
             :id="morador.sobrenome"
             v-for="morador in moradores"
@@ -30,6 +35,7 @@
             <b>{{ morador.nome }} {{ morador.sobrenome }}</b>
           </option>
         </select>
+        <br />
         <br />
         <div class="turno">
           <label class="opcoes-radio" required>
@@ -47,41 +53,23 @@
       <p><b>Visita</b></p>
       <div class="divisoria">
         <p><b>Motivo da visitas</b></p>
-        <select class="opcoes" name="mvisita" v-model="newUsers.mvisita">
-          <option value="Convite para atividades coletivas">
-            Convite para atividades coletivas
-          </option>
-          <option value="atualização"><b>Atualização</b></option>
-          <option value=" Visita Periodica"><b>Visitas Periodica</b></option>
-          <option value="Busca ativa"><b>Busca ativa</b></option>
-          <option value="Acompanhamento"><b>Acompanhamento</b></option>
-          <option value="Controle ambiental/vetorial">
-            <b>Controle ambiental/vetorial</b>
-          </option>
-          <option value="Egresso de internação">
-            <b>Egresso de internação</b>
-          </option>
-          <option value="Orientação/Prevenção">
-            <b>Orientação/Prenvenção</b>
-          </option>
-          <option value="Outros"><b>Outros</b></option>
-        </select>
+        <q-select
+              standout="bg-teal text-white"
+              v-model="newUsers.mvisita"
+              :options="motivos"
+              label="Motivos da Visita"
+            >
+            </q-select>
       </div>
       <div>
         <p><b>Portador de Doença</b></p>
-        <select class="opcoes" name="hdoenca" v-model="newUsers.hdoenca">
-          <option value="Leichimaniose">Leichimaniose</option>
-          <option value="Rubéola">Rubéola</option>
-          <option value="Pneumonia">Pneumonia</option>
-          <option value="Tuberculose">Tuberculose</option>
-          <option value="Hanseniase">Hanseniase</option>
-          <option value="Malária">Malária</option>
-          <option value="Covid19">Covid19</option>
-          <option value="Chagas">Chagas</option>
-          <option value="Parasitas">Parasitas</option>
-          <option value="DST">DST</option>
-          <option value="Saudavel">Saudavel</option>
-        </select>
+        <q-select
+              standout="bg-teal text-white"
+              v-model="newUsers.hdoenca"
+              :options="doenças"
+              label="Doenças"
+            >
+            </q-select>
       </div>
       <p><b>Dados do paciente</b></p>
       <div class="divisoria">
@@ -173,13 +161,37 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/firestore";
-import "../fonts/fontes.css"
+import "../fonts/fontes.css";
 export default {
   props: ["id"],
   data() {
     return {
       date: "",
       dia: [],
+      motivos: [
+        "Convite para atividades coletivas",
+        "Atualização",
+        "Visitas Periodica",
+        "Busca Ativa",
+        "Acompanhamento",
+        "Controle ambiental/vetorial",
+        "Egresso de internação",
+        "Orientação/Prenvenção",
+        "Outros"
+      ],
+      doenças:[
+        "Leichimaniose",
+        "Rubéola",
+        "Pneumonia",
+        "Tuberculose",
+        "Hanseniase",
+        "Malária",
+        "Covid19",
+        "Chagas",
+        "Parasitas",
+        "DST",
+        "Saudável"
+      ],
       agentes: [],
       enviado: false,
       newUsers: {
@@ -188,13 +200,13 @@ export default {
         aldeia: "",
         dia: "",
         mvisitas: "",
-        hdoenca: "",
+        hdoenca: "Saudável",
         atividadeFisica: "não",
         tabagismoSim: "não",
         digestivo: "não",
         peso: "",
         turno: "",
-        nprontuario: "",
+        nprontuario:"",
         gestante: "",
         observacoes: "Sem Observações",
         genero: "",
@@ -211,9 +223,7 @@ export default {
     this.buscarAgentes();
     let db = firebase.firestore();
     this.moradores = [];
-    let numeros = [];
     console.log(docRef);
-    //receber documento do firebase
     var docRef = db
       .collection("morador")
       .doc(this.$route.params.id)
@@ -223,7 +233,6 @@ export default {
         querySnapshot.forEach((doc) => {
           //this.moradores.push((numeros = (doc.id, " => ", doc.data())));
           this.moradores.push(doc.data());
-          console.log( numeros);
         });
       });
   },
@@ -269,7 +278,7 @@ export default {
           digestivo: `${this.newUsers.digestivo}`,
           peso: `${this.newUsers.peso}`,
           turno: `${this.newUsers.turno}`,
-          nprontuario: `${this.newUsers.nprontuario}`,
+          nprontuario: `${this.nprontuario}`,
           observacoes: `${this.newUsers.observacoes}`,
         });
       this.enviado = true;
@@ -283,7 +292,7 @@ export default {
         (this.nome = ""),
         (this.agente = ""),
         (this.motivo = ""),
-        (this.hdoenca = ""),
+        (this.hdoenca = "Saudável"),
         (this.atividadeFisica = "não"),
         (this.tabagismoSim = "não"),
         (this.digestivo = "não"),
@@ -320,7 +329,7 @@ export default {
   .newUsers form {
     background: #058fd9a2;
     border: 1px solid #3f84e5;
-    font-family: 'Righteous', sans-serif;
+    font-family: "Righteous", sans-serif;
     font-size: 20px;
     margin: 0px;
     width: 97%;
@@ -373,7 +382,7 @@ export default {
     -webkit-appearance: none;
     -moz-appearance: none;
     -ms-user-select: none;
-    user-select:  selectpicker;
+    user-select: selectpicker;
     position: relative;
   }
   option {

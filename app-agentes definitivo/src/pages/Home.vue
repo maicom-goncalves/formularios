@@ -3,13 +3,7 @@
     <q-space />
    <Aldeia />
     <div>
-      <q-btn
-        class="flex flex-center q-px-lg q-py-sm q-mb-md"
-        size="lg"
-        label="SAIR"
-        @click="logout"
-        color="secondary"
-      />
+      <button class="sair" @click="logout">SAIR</button>
     </div>
   </div>
 </template>
@@ -50,5 +44,19 @@ name: "Home",
 </script>
 
 <style scoped>
-
+.sair{
+    font-size: 16pt;
+    background-color: #E63946;
+    border-style: none;
+    color: #ecebe3;
+    border-radius: 5px;
+    padding: 3%;
+    text-align: center;
+    box-shadow: 2px #070600c2;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    border-radius: 0px 0px 10px 10px;
+}
 </style>

@@ -37,7 +37,7 @@
   /*font-family: 'Righteous', sans-serif;*/
 }
 .aldeiaB {
-  background-color: #ff5e5b;
+  background-color: #04aa6d;
   border-style: none;
   font-weight: bold;
   list-style: none;
@@ -54,7 +54,7 @@
   text-decoration: none;
   justify-content: center;
   margin: 1%;
-  background-color: #ff5e5b;
+  background-color: #04aa6d;
   border-radius: 10px;
   padding: 5% 10%;
   margin-right: 20%;
